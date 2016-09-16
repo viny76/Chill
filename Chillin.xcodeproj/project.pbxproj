@@ -9,12 +9,32 @@
 /* Begin PBXBuildFile section */
 		2C0233EF1D8C4293002D5702 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0233EE1D8C4293002D5702 /* main.m */; };
 		2C0233F21D8C4293002D5702 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0233F11D8C4293002D5702 /* AppDelegate.m */; };
-		2C0233F51D8C4293002D5702 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0233F41D8C4293002D5702 /* ViewController.m */; };
 		2C0233F81D8C4293002D5702 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C0233F61D8C4293002D5702 /* Main.storyboard */; };
 		2C0233FA1D8C4293002D5702 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C0233F91D8C4293002D5702 /* Assets.xcassets */; };
 		2C0233FD1D8C4293002D5702 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C0233FB1D8C4293002D5702 /* LaunchScreen.storyboard */; };
 		2C0234081D8C4293002D5702 /* ChillinTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0234071D8C4293002D5702 /* ChillinTests.m */; };
 		2C0234131D8C4293002D5702 /* ChillinUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0234121D8C4293002D5702 /* ChillinUITests.m */; };
+		2C0234241D8C4362002D5702 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0234211D8C4362002D5702 /* HomeViewController.m */; };
+		2C0234251D8C4362002D5702 /* HomeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0234231D8C4362002D5702 /* HomeCell.m */; };
+		2C0234281D8C4371002D5702 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0234271D8C4371002D5702 /* LoginViewController.m */; };
+		2C02342B1D8C437B002D5702 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C02342A1D8C437B002D5702 /* SignupViewController.m */; };
+		2C02342E1D8C4390002D5702 /* EditFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C02342D1D8C4390002D5702 /* EditFriendsViewController.m */; };
+		2C0234391D8C439A002D5702 /* ButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0234301D8C439A002D5702 /* ButtonTableViewCell.m */; };
+		2C02343A1D8C439A002D5702 /* LabelButtonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0234321D8C439A002D5702 /* LabelButtonTableViewCell.m */; };
+		2C02343B1D8C439A002D5702 /* SettingsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0234341D8C439A002D5702 /* SettingsCell.m */; };
+		2C02343C1D8C439A002D5702 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0234361D8C439A002D5702 /* SettingsViewController.m */; };
+		2C02343D1D8C439A002D5702 /* SwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0234381D8C439A002D5702 /* SwitchTableViewCell.m */; };
+		2C0234401D8C43AA002D5702 /* AddEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C02343F1D8C43AA002D5702 /* AddEventsViewController.m */; };
+		2C0234431D8C43B2002D5702 /* EventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0234421D8C43B2002D5702 /* EventDetailViewController.m */; };
+		2C0234521D8C443F002D5702 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0234461D8C443F002D5702 /* Constants.m */; };
+		2C0234531D8C443F002D5702 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0234481D8C443F002D5702 /* Person.m */; };
+		2C0234541D8C443F002D5702 /* Screen.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C02344A1D8C443F002D5702 /* Screen.m */; };
+		2C0234551D8C443F002D5702 /* StringFromDateTranslate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C02344C1D8C443F002D5702 /* StringFromDateTranslate.m */; };
+		2C0234561D8C443F002D5702 /* UIColor+CustomColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C02344F1D8C443F002D5702 /* UIColor+CustomColors.m */; };
+		2C0234571D8C443F002D5702 /* LaunchScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0234511D8C443F002D5702 /* LaunchScreen.m */; };
+		8BF0D2F4FDA451ADF7BAC08B /* libPods-ChillinTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2692E6B072BA10A8A0C9BC48 /* libPods-ChillinTests.a */; };
+		D6440F75AA0788A358C69FB6 /* libPods-ChillinUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA31874D542C0AD5D8116572 /* libPods-ChillinUITests.a */; };
+		E09CA6B11C0F49232CEDBB08 /* libPods-Chillin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 495D69423A371FF0F1C7CD4A /* libPods-Chillin.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,12 +55,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		13CB9CDD7310C87AAA668412 /* Pods-Chillin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chillin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chillin/Pods-Chillin.debug.xcconfig"; sourceTree = "<group>"; };
+		237ED8AD621AD690B9A0FB2E /* Pods-ChillinTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChillinTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChillinTests/Pods-ChillinTests.release.xcconfig"; sourceTree = "<group>"; };
+		2692E6B072BA10A8A0C9BC48 /* libPods-ChillinTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChillinTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C0233EA1D8C4293002D5702 /* Chillin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chillin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C0233EE1D8C4293002D5702 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2C0233F01D8C4293002D5702 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2C0233F11D8C4293002D5702 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2C0233F31D8C4293002D5702 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		2C0233F41D8C4293002D5702 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		2C0233F71D8C4293002D5702 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2C0233F91D8C4293002D5702 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C0233FC1D8C4293002D5702 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +72,51 @@
 		2C02340E1D8C4293002D5702 /* ChillinUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChillinUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C0234121D8C4293002D5702 /* ChillinUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChillinUITests.m; sourceTree = "<group>"; };
 		2C0234141D8C4293002D5702 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2C0234201D8C4362002D5702 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		2C0234211D8C4362002D5702 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		2C0234221D8C4362002D5702 /* HomeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCell.h; sourceTree = "<group>"; };
+		2C0234231D8C4362002D5702 /* HomeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCell.m; sourceTree = "<group>"; };
+		2C0234261D8C4371002D5702 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		2C0234271D8C4371002D5702 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		2C0234291D8C437B002D5702 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
+		2C02342A1D8C437B002D5702 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
+		2C02342C1D8C4390002D5702 /* EditFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditFriendsViewController.h; sourceTree = "<group>"; };
+		2C02342D1D8C4390002D5702 /* EditFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditFriendsViewController.m; sourceTree = "<group>"; };
+		2C02342F1D8C439A002D5702 /* ButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonTableViewCell.h; sourceTree = "<group>"; };
+		2C0234301D8C439A002D5702 /* ButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonTableViewCell.m; sourceTree = "<group>"; };
+		2C0234311D8C439A002D5702 /* LabelButtonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabelButtonTableViewCell.h; sourceTree = "<group>"; };
+		2C0234321D8C439A002D5702 /* LabelButtonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LabelButtonTableViewCell.m; sourceTree = "<group>"; };
+		2C0234331D8C439A002D5702 /* SettingsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsCell.h; sourceTree = "<group>"; };
+		2C0234341D8C439A002D5702 /* SettingsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsCell.m; sourceTree = "<group>"; };
+		2C0234351D8C439A002D5702 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		2C0234361D8C439A002D5702 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		2C0234371D8C439A002D5702 /* SwitchTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchTableViewCell.h; sourceTree = "<group>"; };
+		2C0234381D8C439A002D5702 /* SwitchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchTableViewCell.m; sourceTree = "<group>"; };
+		2C02343E1D8C43AA002D5702 /* AddEventsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEventsViewController.h; sourceTree = "<group>"; };
+		2C02343F1D8C43AA002D5702 /* AddEventsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEventsViewController.m; sourceTree = "<group>"; };
+		2C0234411D8C43B2002D5702 /* EventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EventDetailViewController.h; sourceTree = "<group>"; };
+		2C0234421D8C43B2002D5702 /* EventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EventDetailViewController.m; sourceTree = "<group>"; };
+		2C0234441D8C441C002D5702 /* Wolf-in-the-City.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Wolf-in-the-City.ttf"; sourceTree = "<group>"; };
+		2C0234451D8C443F002D5702 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		2C0234461D8C443F002D5702 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		2C0234471D8C443F002D5702 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		2C0234481D8C443F002D5702 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		2C0234491D8C443F002D5702 /* Screen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Screen.h; sourceTree = "<group>"; };
+		2C02344A1D8C443F002D5702 /* Screen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Screen.m; sourceTree = "<group>"; };
+		2C02344B1D8C443F002D5702 /* StringFromDateTranslate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringFromDateTranslate.h; sourceTree = "<group>"; };
+		2C02344C1D8C443F002D5702 /* StringFromDateTranslate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringFromDateTranslate.m; sourceTree = "<group>"; };
+		2C02344D1D8C443F002D5702 /* CustomFonts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomFonts.h; sourceTree = "<group>"; };
+		2C02344E1D8C443F002D5702 /* UIColor+CustomColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+CustomColors.h"; sourceTree = "<group>"; };
+		2C02344F1D8C443F002D5702 /* UIColor+CustomColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+CustomColors.m"; sourceTree = "<group>"; };
+		2C0234501D8C443F002D5702 /* LaunchScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchScreen.h; sourceTree = "<group>"; };
+		2C0234511D8C443F002D5702 /* LaunchScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchScreen.m; sourceTree = "<group>"; };
+		2C02345F1D8C489E002D5702 /* Chillin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chillin.entitlements; sourceTree = "<group>"; };
+		495D69423A371FF0F1C7CD4A /* libPods-Chillin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Chillin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4DD8955719A98FF934700898 /* Pods-ChillinUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChillinUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChillinUITests/Pods-ChillinUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9AD5D68C49958E15AA814932 /* Pods-Chillin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chillin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chillin/Pods-Chillin.release.xcconfig"; sourceTree = "<group>"; };
+		C10C84C862A4CD867E6D675A /* Pods-ChillinUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChillinUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChillinUITests/Pods-ChillinUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E5E43EA2DD29026182F3C93E /* Pods-ChillinTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChillinTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChillinTests/Pods-ChillinTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FA31874D542C0AD5D8116572 /* libPods-ChillinUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChillinUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E09CA6B11C0F49232CEDBB08 /* libPods-Chillin.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BF0D2F4FDA451ADF7BAC08B /* libPods-ChillinTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6440F75AA0788A358C69FB6 /* libPods-ChillinUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +154,8 @@
 				2C0234061D8C4293002D5702 /* ChillinTests */,
 				2C0234111D8C4293002D5702 /* ChillinUITests */,
 				2C0233EB1D8C4293002D5702 /* Products */,
+				964C9713AD999BA8D19CF084 /* Pods */,
+				9CB0C17C0A816A2401CFAE5C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,14 +172,22 @@
 		2C0233EC1D8C4293002D5702 /* Chillin */ = {
 			isa = PBXGroup;
 			children = (
+				2C02345F1D8C489E002D5702 /* Chillin.entitlements */,
+				2C0234581D8C47DB002D5702 /* Common */,
+				2C0234591D8C47EA002D5702 /* Login */,
+				2C02345A1D8C47F9002D5702 /* Sign Up */,
+				2C02345B1D8C4816002D5702 /* Home */,
+				2C02345C1D8C481F002D5702 /* Edit Friends */,
+				2C02345D1D8C483E002D5702 /* Settings */,
+				2C02345E1D8C4855002D5702 /* Events */,
 				2C0233F01D8C4293002D5702 /* AppDelegate.h */,
 				2C0233F11D8C4293002D5702 /* AppDelegate.m */,
-				2C0233F31D8C4293002D5702 /* ViewController.h */,
-				2C0233F41D8C4293002D5702 /* ViewController.m */,
 				2C0233F61D8C4293002D5702 /* Main.storyboard */,
 				2C0233F91D8C4293002D5702 /* Assets.xcassets */,
 				2C0233FB1D8C4293002D5702 /* LaunchScreen.storyboard */,
 				2C0233FE1D8C4293002D5702 /* Info.plist */,
+				2C0234501D8C443F002D5702 /* LaunchScreen.h */,
+				2C0234511D8C443F002D5702 /* LaunchScreen.m */,
 				2C0233ED1D8C4293002D5702 /* Supporting Files */,
 			);
 			path = Chillin;
@@ -117,6 +196,7 @@
 		2C0233ED1D8C4293002D5702 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2C0234441D8C441C002D5702 /* Wolf-in-the-City.ttf */,
 				2C0233EE1D8C4293002D5702 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -140,6 +220,113 @@
 			path = ChillinUITests;
 			sourceTree = "<group>";
 		};
+		2C0234581D8C47DB002D5702 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				2C0234451D8C443F002D5702 /* Constants.h */,
+				2C0234461D8C443F002D5702 /* Constants.m */,
+				2C0234471D8C443F002D5702 /* Person.h */,
+				2C0234481D8C443F002D5702 /* Person.m */,
+				2C0234491D8C443F002D5702 /* Screen.h */,
+				2C02344A1D8C443F002D5702 /* Screen.m */,
+				2C02344B1D8C443F002D5702 /* StringFromDateTranslate.h */,
+				2C02344C1D8C443F002D5702 /* StringFromDateTranslate.m */,
+				2C02344D1D8C443F002D5702 /* CustomFonts.h */,
+				2C02344E1D8C443F002D5702 /* UIColor+CustomColors.h */,
+				2C02344F1D8C443F002D5702 /* UIColor+CustomColors.m */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		2C0234591D8C47EA002D5702 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				2C0234261D8C4371002D5702 /* LoginViewController.h */,
+				2C0234271D8C4371002D5702 /* LoginViewController.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		2C02345A1D8C47F9002D5702 /* Sign Up */ = {
+			isa = PBXGroup;
+			children = (
+				2C0234291D8C437B002D5702 /* SignupViewController.h */,
+				2C02342A1D8C437B002D5702 /* SignupViewController.m */,
+			);
+			name = "Sign Up";
+			sourceTree = "<group>";
+		};
+		2C02345B1D8C4816002D5702 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				2C0234201D8C4362002D5702 /* HomeViewController.h */,
+				2C0234211D8C4362002D5702 /* HomeViewController.m */,
+				2C0234221D8C4362002D5702 /* HomeCell.h */,
+				2C0234231D8C4362002D5702 /* HomeCell.m */,
+			);
+			name = Home;
+			sourceTree = "<group>";
+		};
+		2C02345C1D8C481F002D5702 /* Edit Friends */ = {
+			isa = PBXGroup;
+			children = (
+				2C02342C1D8C4390002D5702 /* EditFriendsViewController.h */,
+				2C02342D1D8C4390002D5702 /* EditFriendsViewController.m */,
+			);
+			name = "Edit Friends";
+			sourceTree = "<group>";
+		};
+		2C02345D1D8C483E002D5702 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				2C02342F1D8C439A002D5702 /* ButtonTableViewCell.h */,
+				2C0234301D8C439A002D5702 /* ButtonTableViewCell.m */,
+				2C0234311D8C439A002D5702 /* LabelButtonTableViewCell.h */,
+				2C0234321D8C439A002D5702 /* LabelButtonTableViewCell.m */,
+				2C0234331D8C439A002D5702 /* SettingsCell.h */,
+				2C0234341D8C439A002D5702 /* SettingsCell.m */,
+				2C0234351D8C439A002D5702 /* SettingsViewController.h */,
+				2C0234361D8C439A002D5702 /* SettingsViewController.m */,
+				2C0234371D8C439A002D5702 /* SwitchTableViewCell.h */,
+				2C0234381D8C439A002D5702 /* SwitchTableViewCell.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		2C02345E1D8C4855002D5702 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				2C02343E1D8C43AA002D5702 /* AddEventsViewController.h */,
+				2C02343F1D8C43AA002D5702 /* AddEventsViewController.m */,
+				2C0234411D8C43B2002D5702 /* EventDetailViewController.h */,
+				2C0234421D8C43B2002D5702 /* EventDetailViewController.m */,
+			);
+			name = Events;
+			sourceTree = "<group>";
+		};
+		964C9713AD999BA8D19CF084 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				13CB9CDD7310C87AAA668412 /* Pods-Chillin.debug.xcconfig */,
+				9AD5D68C49958E15AA814932 /* Pods-Chillin.release.xcconfig */,
+				E5E43EA2DD29026182F3C93E /* Pods-ChillinTests.debug.xcconfig */,
+				237ED8AD621AD690B9A0FB2E /* Pods-ChillinTests.release.xcconfig */,
+				4DD8955719A98FF934700898 /* Pods-ChillinUITests.debug.xcconfig */,
+				C10C84C862A4CD867E6D675A /* Pods-ChillinUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9CB0C17C0A816A2401CFAE5C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				495D69423A371FF0F1C7CD4A /* libPods-Chillin.a */,
+				2692E6B072BA10A8A0C9BC48 /* libPods-ChillinTests.a */,
+				FA31874D542C0AD5D8116572 /* libPods-ChillinUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,9 +334,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C0234171D8C4293002D5702 /* Build configuration list for PBXNativeTarget "Chillin" */;
 			buildPhases = (
+				CA11EB0E107F3E7005F0EFBD /* [CP] Check Pods Manifest.lock */,
 				2C0233E61D8C4293002D5702 /* Sources */,
 				2C0233E71D8C4293002D5702 /* Frameworks */,
 				2C0233E81D8C4293002D5702 /* Resources */,
+				01B0016FDD173B0BA0E1792E /* [CP] Embed Pods Frameworks */,
+				A4E3A60BBF9945754EE6AFC3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -164,9 +354,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C02341A1D8C4293002D5702 /* Build configuration list for PBXNativeTarget "ChillinTests" */;
 			buildPhases = (
+				AD8D36A4E25026A866494255 /* [CP] Check Pods Manifest.lock */,
 				2C0233FF1D8C4293002D5702 /* Sources */,
 				2C0234001D8C4293002D5702 /* Frameworks */,
 				2C0234011D8C4293002D5702 /* Resources */,
+				7645B2749077F81A539A9569 /* [CP] Embed Pods Frameworks */,
+				17D14B32DB3F57CC6D3FF1E5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -182,9 +375,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C02341D1D8C4293002D5702 /* Build configuration list for PBXNativeTarget "ChillinUITests" */;
 			buildPhases = (
+				02E8186BA4C0B6B2D8EE1710 /* [CP] Check Pods Manifest.lock */,
 				2C02340A1D8C4293002D5702 /* Sources */,
 				2C02340B1D8C4293002D5702 /* Frameworks */,
 				2C02340C1D8C4293002D5702 /* Resources */,
+				C3DA7083FBA33EF1EB76246A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -207,7 +402,13 @@
 				TargetAttributes = {
 					2C0233E91D8C4293002D5702 = {
 						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 2NB67X8DYS;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					2C0234021D8C4293002D5702 = {
 						CreatedOnToolsVersion = 8.0;
@@ -268,14 +469,154 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		01B0016FDD173B0BA0E1792E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chillin/Pods-Chillin-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		02E8186BA4C0B6B2D8EE1710 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		17D14B32DB3F57CC6D3FF1E5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChillinTests/Pods-ChillinTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7645B2749077F81A539A9569 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChillinTests/Pods-ChillinTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A4E3A60BBF9945754EE6AFC3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chillin/Pods-Chillin-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AD8D36A4E25026A866494255 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C3DA7083FBA33EF1EB76246A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ChillinUITests/Pods-ChillinUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CA11EB0E107F3E7005F0EFBD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2C0233E61D8C4293002D5702 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C0233F51D8C4293002D5702 /* ViewController.m in Sources */,
+				2C02342B1D8C437B002D5702 /* SignupViewController.m in Sources */,
+				2C0234401D8C43AA002D5702 /* AddEventsViewController.m in Sources */,
+				2C02343D1D8C439A002D5702 /* SwitchTableViewCell.m in Sources */,
 				2C0233F21D8C4293002D5702 /* AppDelegate.m in Sources */,
 				2C0233EF1D8C4293002D5702 /* main.m in Sources */,
+				2C0234521D8C443F002D5702 /* Constants.m in Sources */,
+				2C0234541D8C443F002D5702 /* Screen.m in Sources */,
+				2C02343A1D8C439A002D5702 /* LabelButtonTableViewCell.m in Sources */,
+				2C0234561D8C443F002D5702 /* UIColor+CustomColors.m in Sources */,
+				2C0234431D8C43B2002D5702 /* EventDetailViewController.m in Sources */,
+				2C02343B1D8C439A002D5702 /* SettingsCell.m in Sources */,
+				2C0234251D8C4362002D5702 /* HomeCell.m in Sources */,
+				2C0234531D8C443F002D5702 /* Person.m in Sources */,
+				2C02342E1D8C4390002D5702 /* EditFriendsViewController.m in Sources */,
+				2C0234241D8C4362002D5702 /* HomeViewController.m in Sources */,
+				2C02343C1D8C439A002D5702 /* SettingsViewController.m in Sources */,
+				2C0234571D8C443F002D5702 /* LaunchScreen.m in Sources */,
+				2C0234281D8C4371002D5702 /* LoginViewController.m in Sources */,
+				2C0234391D8C439A002D5702 /* ButtonTableViewCell.m in Sources */,
+				2C0234551D8C443F002D5702 /* StringFromDateTranslate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,9 +761,13 @@
 		};
 		2C0234181D8C4293002D5702 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 13CB9CDD7310C87AAA668412 /* Pods-Chillin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Chillin/Chillin.entitlements;
+				DEVELOPMENT_TEAM = 2NB67X8DYS;
 				INFOPLIST_FILE = Chillin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JardelCompany.Chillin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -431,9 +776,13 @@
 		};
 		2C0234191D8C4293002D5702 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9AD5D68C49958E15AA814932 /* Pods-Chillin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Chillin/Chillin.entitlements;
+				DEVELOPMENT_TEAM = 2NB67X8DYS;
 				INFOPLIST_FILE = Chillin/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JardelCompany.Chillin;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -442,6 +791,7 @@
 		};
 		2C02341B1D8C4293002D5702 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5E43EA2DD29026182F3C93E /* Pods-ChillinTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = ChillinTests/Info.plist;
@@ -454,6 +804,7 @@
 		};
 		2C02341C1D8C4293002D5702 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 237ED8AD621AD690B9A0FB2E /* Pods-ChillinTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = ChillinTests/Info.plist;
@@ -466,6 +817,7 @@
 		};
 		2C02341E1D8C4293002D5702 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4DD8955719A98FF934700898 /* Pods-ChillinUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = ChillinUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -477,6 +829,7 @@
 		};
 		2C02341F1D8C4293002D5702 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C10C84C862A4CD867E6D675A /* Pods-ChillinUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = ChillinUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -505,6 +858,7 @@
 				2C0234191D8C4293002D5702 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2C02341A1D8C4293002D5702 /* Build configuration list for PBXNativeTarget "ChillinTests" */ = {
 			isa = XCConfigurationList;
@@ -513,6 +867,7 @@
 				2C02341C1D8C4293002D5702 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		2C02341D1D8C4293002D5702 /* Build configuration list for PBXNativeTarget "ChillinUITests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +876,7 @@
 				2C02341F1D8C4293002D5702 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
