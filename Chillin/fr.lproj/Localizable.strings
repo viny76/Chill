@@ -1,0 +1,36 @@
+/*
+ Localizable.strings
+ Chillin
+ 
+ Created by Vincent Jardel on 24/05/2016.
+ Copyright © 2016 JardelCompany. All rights reserved.
+ */
+
+// Add Event
+"headerSectionFriend" = "Je l'envoie à :";
+"Select Date" = "Choisir Date";
+"Today" = "Aujourd'hui";
+"Set date" = "Confirmer";
+"Back" = "Retour";
+"Question is empty" = "La question est vide";
+"ERROR" = "ERREUR";
+"Select Friend(s)" = "Sélectionner Ami(s)";
+"When" = "Quand";
+"Title" = "Titre";
+"See Guests" = "Voir les invités";
+
+// Settings
+"SettingsNotification" = "Réglages";
+"Account" = "Compte";
+"More" = "Plus";
+"Disconnect" = "Se Déconnecter";
+"Terms and Conditions" = "Termes et Conditions";
+
+
+// Edit Friend
+"FriendList" = "Liste d'Amis";
+"PendingFriend" = "Amis en attente";
+"SearchFriend" = "Recherche d'Amis";
+
+// Home
+"Last Refresh: %02.0f:%02.0f:%04.1f" = "Rafraîchit : %02.0f:%02.0f:%04.1f";

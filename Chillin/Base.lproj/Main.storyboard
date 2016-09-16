@@ -26,6 +26,7 @@
         <!--Main-->
         <scene sceneID="jeo-Dh-71A">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fVP-Ci-bWN" sceneMemberID="firstResponder"/>
                 <viewController title="Main" id="Azm-Q2-n99" customClass="HomeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eoc-vO-Av3"/>
@@ -40,11 +41,11 @@
                                 <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="parallaxCell" rowHeight="130" id="4rU-zH-Hr1" customClass="HomeCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="parallaxCell" rowHeight="130" id="4rU-zH-Hr1" customClass="HomeCell">
                                         <rect key="frame" x="0.0" y="86" width="375" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.85000002384185791" contentMode="center" tableViewCell="4rU-zH-Hr1" id="65y-wa-TYi">
-                                            <frame key="frameInset" width="342" height="130"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.85000002384185791" contentMode="scaleToFill" tableViewCell="4rU-zH-Hr1" id="65y-wa-TYi">
+                                            <frame key="frameInset" width="375" height="130"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="{Title}" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XT6-k1-tC7">
@@ -91,7 +92,7 @@
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstItem="VcL-qG-unU" firstAttribute="centerY" secondItem="Bhu-jV-KG4" secondAttribute="centerY" id="8f2-kY-9kn"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Bhu-jV-KG4" secondAttribute="trailing" constant="10" id="PR0-gA-kPV"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Bhu-jV-KG4" secondAttribute="trailing" constant="20" id="PR0-gA-kPV"/>
                                                         <constraint firstItem="Bhu-jV-KG4" firstAttribute="leading" secondItem="VcL-qG-unU" secondAttribute="trailing" constant="10" id="eoz-Ex-ZUh"/>
                                                     </constraints>
                                                 </view>
@@ -145,7 +146,7 @@
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="fms-X8-dMo" kind="push" id="5gS-9y-i9l"/>
+                                    <segue destination="fms-X8-dMo" kind="push" id="mxr-Dh-rfW"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -181,7 +182,6 @@
                         <outlet property="tableView" destination="vhr-lK-sk5" id="vek-uN-DtZ"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fVP-Ci-bWN" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1132.5" y="-66.5"/>
         </scene>
@@ -277,7 +277,7 @@
                                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jdr-uL-iII" customClass="SevenSwitch" customModule="Chillin">
+                                                                    <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jdr-uL-iII" customClass="SevenSwitch">
                                                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="51" id="Z2C-a4-fum"/>
@@ -800,8 +800,8 @@
                         </segmentedControl>
                     </navigationItem>
                     <connections>
-                        <outlet property="segment" destination="aDh-62-ALh" id="1mb-8B-mEe"/>
-                        <outlet property="tableView" destination="eBU-OB-hZu" id="hKJ-0N-gcZ"/>
+                        <outlet property="segment" destination="aDh-62-ALh" id="opQ-UZ-PEZ"/>
+                        <outlet property="tableView" destination="eBU-OB-hZu" id="7TR-KK-828"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o7P-bv-X3o" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1265,6 +1265,7 @@ These Terms and Conditions and your use of this App is governed by and construed
         <!--Navigation Controller-->
         <scene sceneID="Dbg-4A-ORA">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5G7-KB-3Ag" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="fGc-iN-Ocl" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="AAW-A5-Hbg">
@@ -1276,7 +1277,6 @@ These Terms and Conditions and your use of this App is governed by and construed
                         <segue destination="Azm-Q2-n99" kind="relationship" relationship="rootViewController" id="jRx-3M-krN"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5G7-KB-3Ag" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="303" y="2"/>
         </scene>

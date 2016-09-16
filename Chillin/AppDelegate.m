@@ -21,16 +21,16 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
         configuration.clientKey = @"1UxA7TR2HDuFSnILmLrJWi7zdlsnQz2ZYj2t9kls";
         configuration.server = @"http://chilln.herokuapp.com/parse";
     }]];
-//    [PFUser logOut];
-        [PFUser enableRevocableSessionInBackground];
+    [PFUser enableRevocableSessionInBackground];
     
     //    [Parse setApplicationId:@"VpU4JfFKNOI1syoeVaWwmSGbDeMFBfVLld2T7Fdi"
     //                  clientKey:@"1UxA7TR2HDuFSnILmLrJWi7zdlsnQz2ZYj2t9kls"];
+    
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"logged"]) { // LOGGED = TRUE
-        self.window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"Main"];
+        self.window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
     } else {
-        UIViewController *rootController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"LoginViewController"];
-        UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:rootController];
+        UIViewController* rootController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"LoginViewController"];
+        UINavigationController* navigation = [[UINavigationController alloc] initWithRootViewController:rootController];
         
         self.window.rootViewController = navigation;
     }

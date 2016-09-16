@@ -18,12 +18,12 @@
     self.tableData = [[NSMutableArray alloc] init];
     self.searchResults = [[NSArray alloc] init];
     phoneUtil = [[NBPhoneNumberUtil alloc] init];
-    
+
     self.friendRequestsWaiting = [NSMutableArray array];
     [self refreshWaitingFriend];
-    
+
     [self getPersonOutOfAddressBook];
-    
+
     [self refreshAllUsersAndLoadFriends];
     
     //UISearchController
@@ -93,7 +93,7 @@
     }
     
     [label setText:string];
-
+    
     return view;
 }
 
@@ -216,22 +216,32 @@
         self.tableView.userInteractionEnabled = NO;
         PFUser *selected = (self.searchResults.count > 0 ? [self.searchResults objectAtIndex:indexPath.row] : [self.allUsers objectAtIndex:indexPath.row]);
         
-        if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+        if ([self isFriend:selected]) {
             // Already friend
             self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             
             [PFCloud callFunctionInBackground:@"removeFriend" withParameters:@{@"friendRequest" : selected.objectId} block:^(id object, NSError *error) {
                 if (!error) {
-                    [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                        
-                        if (succeeded) {
+                            NSLog(@"great !");
                             cell.accessoryType = UITableViewCellAccessoryNone;
                             [self.hud removeFromSuperview];
-                            [self loadFriends:YES];
-                            self.tableView.userInteractionEnabled = YES;
+                    self.friendsRelation = [self.currentUser relationForKey:@"friends"];
+                    PFQuery *query = [self.friendsRelation query];
+                    [query orderByAscending:@"username"];
+                    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                        if (error) {
+                            NSLog(@"Error %@ %@", error, [error userInfo]);
+                            [self.hud removeFromSuperview];
+                        } else {
+                            self.friends = objects;
+                            [self.tableView reloadData];
+                            [self.hud removeFromSuperview];
                         }
                     }];
-                } else {
+
+                            self.tableView.userInteractionEnabled = YES;
+                        }
+                else {
                     NSLog(@"error");
                     [self.hud removeFromSuperview];
                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Try Again !" message:@"Check your network" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];

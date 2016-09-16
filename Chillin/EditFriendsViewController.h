@@ -20,8 +20,9 @@
     NBPhoneNumberUtil *phoneUtil;
 }
 
+
+@property (strong, nonatomic) IBOutlet UISegmentedControl *segment;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) IBOutlet UISegmentedControl *segment;
 @property (nonatomic, strong) NSArray *allUsers;
 @property (nonatomic, strong) PFRelation *friendsRelation;
 @property (nonatomic, strong) PFUser *currentUser;

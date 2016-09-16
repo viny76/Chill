@@ -24,7 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    [self configureAppearance];
+    [self configureAppearance];
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
     
     PFQuery *friendsQuery = [self.friendsRelation query];
@@ -36,17 +36,17 @@
         }
     }];
     
-//    // Launch Timer
-//    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerTick:) userInfo:nil repeats:YES];
-//    
-//    //reloadEvents
-//    self.currentUser = [PFUser currentUser];
-//    self.friendsRelation = [[PFUser currentUser] relationForKey:@"friends"];
-//    
-//    refreshControl = [[UIRefreshControl alloc]init];
-//    [refreshControl beginRefreshing];
-//    [self.tableView addSubview:refreshControl];
-//    [refreshControl addTarget:self action:@selector(reloadEvents) forControlEvents:UIControlEventValueChanged];
+    // Launch Timer
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerTick:) userInfo:nil repeats:YES];
+    
+    //reloadEvents
+    self.currentUser = [PFUser currentUser];
+    self.friendsRelation = [[PFUser currentUser] relationForKey:@"friends"];
+    
+    refreshControl = [[UIRefreshControl alloc]init];
+    [refreshControl beginRefreshing];
+    [self.tableView addSubview:refreshControl];
+    [refreshControl addTarget:self action:@selector(reloadEvents) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -54,7 +54,7 @@
     [self.navigationController.navigationBar setHidden:NO];
     if (!self.currentUser.objectId) {
         [PFUser logOut];
-        AppDelegate *appDelegateTemp = (AppDelegate*)[[UIApplication sharedApplication]delegate];
+        AppDelegate *appDelegateTemp = (AppDelegate *)[[UIApplication sharedApplication]delegate];
         
         UIViewController *rootController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateViewControllerWithIdentifier:@"LoginViewController"];
         
@@ -93,24 +93,25 @@
     cell.yesButton.tag = indexPath.row;
     cell.noButton.tag = indexPath.row;
     
-        if (![[[self.events valueForKey:@"acceptedUser"] objectAtIndex:indexPath.row] isEqual:[NSNull null]] &&
-            [[[self.events valueForKey:@"acceptedUser"] objectAtIndex:indexPath.row] containsObject:[self.currentUser objectForKey:@"surname"]]) {
-            cell.yesButton.selected = YES;
-            cell.noButton.selected = NO;
-        } else if (![[[self.events valueForKey:@"refusedUser"] objectAtIndex:indexPath.row] isEqual:[NSNull null]] &&
-                   [[[self.events valueForKey:@"refusedUser"] objectAtIndex:indexPath.row] containsObject:[self.currentUser objectForKey:@"surname"]]) {
-            cell.yesButton.selected = NO;
-            cell.noButton.selected = YES;
-        } else {
-            cell.yesButton.selected = NO;
-            cell.noButton.selected = NO;
-        }
+    if (![[[self.events valueForKey:@"acceptedUser"] objectAtIndex:indexPath.row] isEqual:[NSNull null]] &&
+        [[[self.events valueForKey:@"acceptedUser"] objectAtIndex:indexPath.row] containsObject:[self.currentUser objectForKey:@"surname"]]) {
+        cell.yesButton.selected = YES;
+        cell.noButton.selected = NO;
+    } else if (![[[self.events valueForKey:@"refusedUser"] objectAtIndex:indexPath.row] isEqual:[NSNull null]] &&
+               [[[self.events valueForKey:@"refusedUser"] objectAtIndex:indexPath.row] containsObject:[self.currentUser objectForKey:@"surname"]]) {
+        cell.yesButton.selected = NO;
+        cell.noButton.selected = YES;
+    } else {
+        cell.yesButton.selected = NO;
+        cell.noButton.selected = NO;
+    }
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     [cell setBackgroundColor:[UIColor clearColor]];
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -235,13 +236,13 @@
     [self.tableView.backgroundView setContentMode:UIViewContentModeScaleAspectFill];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     
-//    UIImage *icon = [UIImage imageNamed:@"AppIcon"];
-//    CBZSplashView *splashView = [CBZSplashView splashViewWithIcon:icon backgroundColor:[UIColor colorChillin]];
-//    
-//    // customize duration, icon size, or icon color here;
-//    splashView.animationDuration = 1.4;
-//    [self.view addSubview:splashView];
-//    [splashView startAnimation];
+    UIImage *icon = [UIImage imageNamed:@"AppIcon"];
+    CBZSplashView *splashView = [CBZSplashView splashViewWithIcon:icon backgroundColor:[UIColor colorChillin]];
+    
+    // customize duration, icon size, or icon color here;
+    splashView.animationDuration = 1.4;
+    [self.view addSubview:splashView];
+    [splashView startAnimation];
     
     //UIButton in UIBarButtonItem
     self.eventsButton.showsTouchWhenHighlighted = YES;

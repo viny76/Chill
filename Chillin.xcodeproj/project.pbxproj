@@ -32,6 +32,8 @@
 		2C0234551D8C443F002D5702 /* StringFromDateTranslate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C02344C1D8C443F002D5702 /* StringFromDateTranslate.m */; };
 		2C0234561D8C443F002D5702 /* UIColor+CustomColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C02344F1D8C443F002D5702 /* UIColor+CustomColors.m */; };
 		2C0234571D8C443F002D5702 /* LaunchScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0234511D8C443F002D5702 /* LaunchScreen.m */; };
+		2C0234601D8C8CA0002D5702 /* Wolf-in-the-City.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C0234441D8C441C002D5702 /* Wolf-in-the-City.ttf */; };
+		2C0234651D8C8F65002D5702 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0234671D8C8F65002D5702 /* Localizable.strings */; };
 		8BF0D2F4FDA451ADF7BAC08B /* libPods-ChillinTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2692E6B072BA10A8A0C9BC48 /* libPods-ChillinTests.a */; };
 		D6440F75AA0788A358C69FB6 /* libPods-ChillinUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA31874D542C0AD5D8116572 /* libPods-ChillinUITests.a */; };
 		E09CA6B11C0F49232CEDBB08 /* libPods-Chillin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 495D69423A371FF0F1C7CD4A /* libPods-Chillin.a */; };
@@ -111,6 +113,10 @@
 		2C0234501D8C443F002D5702 /* LaunchScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchScreen.h; sourceTree = "<group>"; };
 		2C0234511D8C443F002D5702 /* LaunchScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchScreen.m; sourceTree = "<group>"; };
 		2C02345F1D8C489E002D5702 /* Chillin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chillin.entitlements; sourceTree = "<group>"; };
+		2C0234611D8C8F0B002D5702 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		2C0234621D8C8F0B002D5702 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		2C0234691D8C8F6C002D5702 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2C02346A1D8C8F77002D5702 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		495D69423A371FF0F1C7CD4A /* libPods-Chillin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Chillin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DD8955719A98FF934700898 /* Pods-ChillinUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChillinUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChillinUITests/Pods-ChillinUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9AD5D68C49958E15AA814932 /* Pods-Chillin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chillin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chillin/Pods-Chillin.release.xcconfig"; sourceTree = "<group>"; };
@@ -196,6 +202,7 @@
 		2C0233ED1D8C4293002D5702 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2C0234671D8C8F65002D5702 /* Localizable.strings */,
 				2C0234441D8C441C002D5702 /* Wolf-in-the-City.ttf */,
 				2C0233EE1D8C4293002D5702 /* main.m */,
 			);
@@ -429,6 +436,7 @@
 			knownRegions = (
 				en,
 				Base,
+				fr,
 			);
 			mainGroup = 2C0233E11D8C4293002D5702;
 			productRefGroup = 2C0233EB1D8C4293002D5702 /* Products */;
@@ -447,6 +455,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C0234651D8C8F65002D5702 /* Localizable.strings in Resources */,
+				2C0234601D8C8CA0002D5702 /* Wolf-in-the-City.ttf in Resources */,
 				2C0233FD1D8C4293002D5702 /* LaunchScreen.storyboard in Resources */,
 				2C0233FA1D8C4293002D5702 /* Assets.xcassets in Resources */,
 				2C0233F81D8C4293002D5702 /* Main.storyboard in Resources */,
@@ -656,6 +666,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2C0233F71D8C4293002D5702 /* Base */,
+				2C0234611D8C8F0B002D5702 /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -664,8 +675,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				2C0233FC1D8C4293002D5702 /* Base */,
+				2C0234621D8C8F0B002D5702 /* fr */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		2C0234671D8C8F65002D5702 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2C0234691D8C8F6C002D5702 /* fr */,
+				2C02346A1D8C8F77002D5702 /* en */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -675,6 +696,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -722,6 +744,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

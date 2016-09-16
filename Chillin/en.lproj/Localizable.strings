@@ -1,0 +1,18 @@
+/* 
+  Localizable.strings
+  Chillin
+
+  Created by Vincent Jardel on 24/05/2016.
+  Copyright © 2016 JardelCompany. All rights reserved.
+*/
+
+// Add Event
+"headerSectionFriend" = "Select Friend:";
+
+// Settings
+"SettingsNotification" = "Settings";
+
+// Edit Friend
+"FriendList" = "Friend List";
+"PendingFriend" = "Pending Friend";
+"SearchFriend" = "Search Friend";
