@@ -41,7 +41,6 @@
                                          } else {
                                              //GOOD LOGIN
                                              NSLog(@"GOOOOD");
-                                             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"logged"];
                                              AppDelegate *appDelegateTemp = (AppDelegate*)[[UIApplication sharedApplication] delegate];
                                              
                                              appDelegateTemp.window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];

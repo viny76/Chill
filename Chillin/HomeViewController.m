@@ -60,7 +60,6 @@
         
         UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:rootController];
         appDelegateTemp.window.rootViewController = navigation;
-        [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"logged"];
     } else {
         [self reloadEvents];
     }

@@ -187,7 +187,6 @@ BOOL notificationOn = NO;
             
             UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:rootController];
             appDelegateTemp.window.rootViewController = navigation;
-            [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"logged"];
         }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {

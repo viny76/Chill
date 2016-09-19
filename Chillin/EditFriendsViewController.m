@@ -18,12 +18,12 @@
     self.tableData = [[NSMutableArray alloc] init];
     self.searchResults = [[NSArray alloc] init];
     phoneUtil = [[NBPhoneNumberUtil alloc] init];
-
+    
     self.friendRequestsWaiting = [NSMutableArray array];
     [self refreshWaitingFriend];
-
+    
     [self getPersonOutOfAddressBook];
-
+    
     [self refreshAllUsersAndLoadFriends];
     
     //UISearchController
@@ -222,25 +222,39 @@
             
             [PFCloud callFunctionInBackground:@"removeFriend" withParameters:@{@"friendRequest" : selected.objectId} block:^(id object, NSError *error) {
                 if (!error) {
-                            NSLog(@"great !");
-                            cell.accessoryType = UITableViewCellAccessoryNone;
-                            [self.hud removeFromSuperview];
-                    self.friendsRelation = [self.currentUser relationForKey:@"friends"];
-                    PFQuery *query = [self.friendsRelation query];
-                    [query orderByAscending:@"username"];
-                    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                        if (error) {
-                            NSLog(@"Error %@ %@", error, [error userInfo]);
-                            [self.hud removeFromSuperview];
-                        } else {
-                            self.friends = objects;
-                            [self.tableView reloadData];
-                            [self.hud removeFromSuperview];
+                    
+                    PFRelation *friendsRelation = [[PFUser currentUser] relationForKey:@"friends"];
+                    [friendsRelation removeObject:selected];
+                    [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                        
+                        if (succeeded) {
+                            // Refresh Relation
+                            self.friendsRelation = [self.currentUser relationForKey:@"friends"];
+                            PFQuery *query = [self.friendsRelation query];
+                            [query orderByAscending:@"surname"];
+                            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                                if (error) {
+                                    NSLog(@"Error %@ %@", error, [error userInfo]);
+                                    [self.hud removeFromSuperview];
+                                    self.tableView.userInteractionEnabled = YES;
+                                } else {
+                                    self.friends = objects;
+                                    [self.tableView reloadData];
+                                    [self.hud removeFromSuperview];
+                                    self.tableView.userInteractionEnabled = YES;
+                                    cell.accessoryType = UITableViewCellAccessoryNone;
+                                }
+                            }];
                         }
-                    }];
-
+                        else {
+                            NSLog(@"error");
+                            [self.hud removeFromSuperview];
+                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Try Again !" message:@"Check your network" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                            [alert show];
                             self.tableView.userInteractionEnabled = YES;
                         }
+                    }];
+                }
                 else {
                     NSLog(@"error");
                     [self.hud removeFromSuperview];
@@ -508,10 +522,12 @@
         self.hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon_check"]];
         self.hud.mode = MBProgressHUDModeCustomView;
         self.hud.labelText = @"Deleted";
+    } else {
+        
     }
     self.friendsRelation = [self.currentUser relationForKey:@"friends"];
     PFQuery *query = [self.friendsRelation query];
-    [query orderByAscending:@"username"];
+    [query orderByAscending:@"surname"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
             NSLog(@"Error %@ %@", error, [error userInfo]);
@@ -520,6 +536,7 @@
             self.friends = objects;
             [self.tableView reloadData];
             [self.hud removeFromSuperview];
+            self.tableView.userInteractionEnabled = YES;
         }
     }];
 }
@@ -540,7 +557,7 @@
             self.allUsers = objects;
             self.friendsRelation = [self.currentUser relationForKey:@"friends"];
             PFQuery *query = [self.friendsRelation query];
-            [query orderByAscending:@"username"];
+            [query orderByAscending:@"surname"];
             [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
                 if (error) {
                     NSLog(@"Error %@ %@", error, [error userInfo]);
@@ -615,7 +632,6 @@
             [PFCloud callFunctionInBackground:@"addFriend" withParameters:@{@"friendRequest" : selectedUser.objectId} block:^(id object, NSError *error)
              {
                  if (!error) {
-                     self.tableView.userInteractionEnabled = YES;
                      [self.currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                          if (succeeded) {
                              [user deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
