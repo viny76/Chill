@@ -34,6 +34,12 @@
 		2C0234571D8C443F002D5702 /* LaunchScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0234511D8C443F002D5702 /* LaunchScreen.m */; };
 		2C0234601D8C8CA0002D5702 /* Wolf-in-the-City.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C0234441D8C441C002D5702 /* Wolf-in-the-City.ttf */; };
 		2C0234651D8C8F65002D5702 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0234671D8C8F65002D5702 /* Localizable.strings */; };
+		2C5E59891DA7F41D001B69FD /* ShowFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5E59881DA7F41D001B69FD /* ShowFriendViewController.m */; };
+		2C817B271DA7BF08008D6348 /* MVPlaceSearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C817B221DA7BF08008D6348 /* MVPlaceSearchTextField.m */; };
+		2C817B281DA7BF08008D6348 /* PlaceDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C817B241DA7BF08008D6348 /* PlaceDetail.m */; };
+		2C817B291DA7BF08008D6348 /* PlaceObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C817B261DA7BF08008D6348 /* PlaceObject.m */; };
+		2C817B311DA7BF14008D6348 /* MLPAutoCompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C817B2B1DA7BF14008D6348 /* MLPAutoCompleteTextField.m */; };
+		2C817B321DA7BF14008D6348 /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C817B301DA7BF14008D6348 /* NSString+Levenshtein.m */; };
 		8BF0D2F4FDA451ADF7BAC08B /* libPods-ChillinTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2692E6B072BA10A8A0C9BC48 /* libPods-ChillinTests.a */; };
 		D6440F75AA0788A358C69FB6 /* libPods-ChillinUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FA31874D542C0AD5D8116572 /* libPods-ChillinUITests.a */; };
 		E09CA6B11C0F49232CEDBB08 /* libPods-Chillin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 495D69423A371FF0F1C7CD4A /* libPods-Chillin.a */; };
@@ -117,6 +123,21 @@
 		2C0234621D8C8F0B002D5702 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		2C0234691D8C8F6C002D5702 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C02346A1D8C8F77002D5702 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2C5E59871DA7F41D001B69FD /* ShowFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowFriendViewController.h; sourceTree = "<group>"; };
+		2C5E59881DA7F41D001B69FD /* ShowFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowFriendViewController.m; sourceTree = "<group>"; };
+		2C817B211DA7BF08008D6348 /* MVPlaceSearchTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVPlaceSearchTextField.h; sourceTree = "<group>"; };
+		2C817B221DA7BF08008D6348 /* MVPlaceSearchTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MVPlaceSearchTextField.m; sourceTree = "<group>"; };
+		2C817B231DA7BF08008D6348 /* PlaceDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceDetail.h; sourceTree = "<group>"; };
+		2C817B241DA7BF08008D6348 /* PlaceDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceDetail.m; sourceTree = "<group>"; };
+		2C817B251DA7BF08008D6348 /* PlaceObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceObject.h; sourceTree = "<group>"; };
+		2C817B261DA7BF08008D6348 /* PlaceObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceObject.m; sourceTree = "<group>"; };
+		2C817B2A1DA7BF14008D6348 /* MLPAutoCompleteTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompleteTextField.h; sourceTree = "<group>"; };
+		2C817B2B1DA7BF14008D6348 /* MLPAutoCompleteTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLPAutoCompleteTextField.m; sourceTree = "<group>"; };
+		2C817B2C1DA7BF14008D6348 /* MLPAutoCompleteTextFieldDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompleteTextFieldDataSource.h; sourceTree = "<group>"; };
+		2C817B2D1DA7BF14008D6348 /* MLPAutoCompleteTextFieldDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompleteTextFieldDelegate.h; sourceTree = "<group>"; };
+		2C817B2E1DA7BF14008D6348 /* MLPAutoCompletionObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLPAutoCompletionObject.h; sourceTree = "<group>"; };
+		2C817B2F1DA7BF14008D6348 /* NSString+Levenshtein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Levenshtein.h"; sourceTree = "<group>"; };
+		2C817B301DA7BF14008D6348 /* NSString+Levenshtein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Levenshtein.m"; sourceTree = "<group>"; };
 		495D69423A371FF0F1C7CD4A /* libPods-Chillin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Chillin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DD8955719A98FF934700898 /* Pods-ChillinUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChillinUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChillinUITests/Pods-ChillinUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9AD5D68C49958E15AA814932 /* Pods-Chillin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chillin.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chillin/Pods-Chillin.release.xcconfig"; sourceTree = "<group>"; };
@@ -194,6 +215,7 @@
 				2C0233FE1D8C4293002D5702 /* Info.plist */,
 				2C0234501D8C443F002D5702 /* LaunchScreen.h */,
 				2C0234511D8C443F002D5702 /* LaunchScreen.m */,
+				2C817B1F1DA7BEEB008D6348 /* MVPlaceSearchTextField */,
 				2C0233ED1D8C4293002D5702 /* Supporting Files */,
 			);
 			path = Chillin;
@@ -305,10 +327,40 @@
 			children = (
 				2C02343E1D8C43AA002D5702 /* AddEventsViewController.h */,
 				2C02343F1D8C43AA002D5702 /* AddEventsViewController.m */,
+				2C5E59871DA7F41D001B69FD /* ShowFriendViewController.h */,
+				2C5E59881DA7F41D001B69FD /* ShowFriendViewController.m */,
 				2C0234411D8C43B2002D5702 /* EventDetailViewController.h */,
 				2C0234421D8C43B2002D5702 /* EventDetailViewController.m */,
 			);
 			name = Events;
+			sourceTree = "<group>";
+		};
+		2C817B1F1DA7BEEB008D6348 /* MVPlaceSearchTextField */ = {
+			isa = PBXGroup;
+			children = (
+				2C817B201DA7BEF9008D6348 /* MLPAutoCompleteTextField */,
+				2C817B211DA7BF08008D6348 /* MVPlaceSearchTextField.h */,
+				2C817B221DA7BF08008D6348 /* MVPlaceSearchTextField.m */,
+				2C817B231DA7BF08008D6348 /* PlaceDetail.h */,
+				2C817B241DA7BF08008D6348 /* PlaceDetail.m */,
+				2C817B251DA7BF08008D6348 /* PlaceObject.h */,
+				2C817B261DA7BF08008D6348 /* PlaceObject.m */,
+			);
+			name = MVPlaceSearchTextField;
+			sourceTree = "<group>";
+		};
+		2C817B201DA7BEF9008D6348 /* MLPAutoCompleteTextField */ = {
+			isa = PBXGroup;
+			children = (
+				2C817B2A1DA7BF14008D6348 /* MLPAutoCompleteTextField.h */,
+				2C817B2B1DA7BF14008D6348 /* MLPAutoCompleteTextField.m */,
+				2C817B2C1DA7BF14008D6348 /* MLPAutoCompleteTextFieldDataSource.h */,
+				2C817B2D1DA7BF14008D6348 /* MLPAutoCompleteTextFieldDelegate.h */,
+				2C817B2E1DA7BF14008D6348 /* MLPAutoCompletionObject.h */,
+				2C817B2F1DA7BF14008D6348 /* NSString+Levenshtein.h */,
+				2C817B301DA7BF14008D6348 /* NSString+Levenshtein.m */,
+			);
+			name = MLPAutoCompleteTextField;
 			sourceTree = "<group>";
 		};
 		964C9713AD999BA8D19CF084 /* Pods */ = {
@@ -610,10 +662,15 @@
 				2C02342B1D8C437B002D5702 /* SignupViewController.m in Sources */,
 				2C0234401D8C43AA002D5702 /* AddEventsViewController.m in Sources */,
 				2C02343D1D8C439A002D5702 /* SwitchTableViewCell.m in Sources */,
+				2C817B291DA7BF08008D6348 /* PlaceObject.m in Sources */,
 				2C0233F21D8C4293002D5702 /* AppDelegate.m in Sources */,
 				2C0233EF1D8C4293002D5702 /* main.m in Sources */,
+				2C817B321DA7BF14008D6348 /* NSString+Levenshtein.m in Sources */,
+				2C5E59891DA7F41D001B69FD /* ShowFriendViewController.m in Sources */,
 				2C0234521D8C443F002D5702 /* Constants.m in Sources */,
+				2C817B281DA7BF08008D6348 /* PlaceDetail.m in Sources */,
 				2C0234541D8C443F002D5702 /* Screen.m in Sources */,
+				2C817B311DA7BF14008D6348 /* MLPAutoCompleteTextField.m in Sources */,
 				2C02343A1D8C439A002D5702 /* LabelButtonTableViewCell.m in Sources */,
 				2C0234561D8C443F002D5702 /* UIColor+CustomColors.m in Sources */,
 				2C0234431D8C43B2002D5702 /* EventDetailViewController.m in Sources */,
@@ -627,6 +684,7 @@
 				2C0234281D8C4371002D5702 /* LoginViewController.m in Sources */,
 				2C0234391D8C439A002D5702 /* ButtonTableViewCell.m in Sources */,
 				2C0234551D8C443F002D5702 /* StringFromDateTranslate.m in Sources */,
+				2C817B271DA7BF08008D6348 /* MVPlaceSearchTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,8 +8,9 @@
 
 #import "AddEventsViewController.h"
 #import <SevenSwitch.h>
+#import "ShowFriendViewController.h"
 
-@interface AddEventsViewController () <UIScrollViewDelegate, UIAlertViewDelegate, UITextFieldDelegate, HSDatePickerViewControllerDelegate>
+@interface AddEventsViewController () <UIAlertViewDelegate, UITextFieldDelegate, HSDatePickerViewControllerDelegate>
 @end
 
 @implementation AddEventsViewController
@@ -17,8 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.sendButton sizeToFit];
-    scrollingProgrammatically = false;
-    self.currentUser = [PFUser currentUser];
+    
     //Hide Keyboard when tapping other area
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
@@ -26,102 +26,31 @@
     //IMPORTANT !!!
     tap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tap];
-    
-    self.recipientId = [[NSMutableArray alloc] init];
-    self.recipientUser = [[NSMutableArray alloc] init];
-    [self loadFriends];
-    
     self.mySwitch.on = YES;
-    [self.selectFriendButton setImage:[UIImage imageNamed:@"ChevronBottomBlue"] forState:UIControlStateNormal];
-    [self.selectFriendButton setImage:[UIImage imageNamed:@"ChevronUpBlue"] forState:UIControlStateSelected];
-    // Add a bottomBorder.
-//    CALayer *bottomBorder = [CALayer layer];
-//    bottomBorder.backgroundColor = [[UIColor colorBorder] CGColor];
-//    bottomBorder.frame = CGRectMake(0, 0.66*[Screen height]-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height, [Screen width], 1.0f);
-//    [self.headerView.layer addSublayer:bottomBorder];
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (scrollView == self.scrollView) {
-        if(!scrollingProgrammatically) {
-            if (scrollView.contentOffset.y >= self.headerView.frame.origin.y && scrollView.contentOffset.y > 0) {
-                // Reach details content view
-                self.selectFriendButton.selected = true;
-            }
-            else {
-                self.selectFriendButton.selected = false;
-            }
-        }
-    }
-}
-
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
-    scrollingProgrammatically = false;
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.friendsList count];
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Remove seperator inset
-    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-        [cell setSeparatorInset:UIEdgeInsetsZero];
-    }
     
-    // Prevent the cell from inheriting the Table View's margin settings
-    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
-        [cell setPreservesSuperviewLayoutMargins:NO];
-    }
-    
-    // Explictly set your cell's layout margins
-    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-        [cell setLayoutMargins:UIEdgeInsetsZero];
-    }
+    //UITextField Google Maps
+    _txtPlaceSearch.placeSearchDelegate                 = self;
+    _txtPlaceSearch.strApiKey                           = @"AIzaSyBVaaKEBzTMw52xC58U4K53_qBYBLy_9Ak";
+    _txtPlaceSearch.superViewOfList                     = self.view;  // View, on which Autocompletion list should be appeared.
+    _txtPlaceSearch.autoCompleteShouldHideOnSelection   = YES;
+    _txtPlaceSearch.maximumNumberOfAutoCompleteRows     = 5;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    NSString *name = [[self.friendsList objectAtIndex:indexPath.row] valueForKey:@"surname"];
-    cell.textLabel.text = name;
-    
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    PFUser *user = [self.friendsList objectAtIndex:indexPath.row];
-    
-    if (cell.accessoryType == UITableViewCellAccessoryNone) {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        [self.recipientId addObject:self.currentUser.objectId];
-        [self.recipientId addObject:user.objectId];
-        [self.recipientUser addObject:user[@"surname"]];
-    } else {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        [self.recipientId removeObject:user.objectId];
-        [self.recipientId removeObject:self.currentUser.objectId];
-        [self.recipientUser removeObject:user[@"surname"]];
-    }
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
-    /* Create custom view to display section header... */
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
-    [label setFont:[UIFont boldSystemFontOfSize:12]];
-    [label setText:Localized(@"headerSectionFriend")];
-    [view addSubview:label];
-    [view setBackgroundColor:[UIColor colorChillin]];
-    return view;
+// UITextField Google Maps
+-(void)viewDidAppear:(BOOL)animated{
+    //Optional Properties
+    _txtPlaceSearch.autoCompleteRegularFontName =  @"HelveticaNeue-Bold";
+    _txtPlaceSearch.autoCompleteBoldFontName = @"HelveticaNeue";
+    _txtPlaceSearch.autoCompleteTableCornerRadius=1.0;
+    _txtPlaceSearch.autoCompleteRowHeight=35;
+    _txtPlaceSearch.autoCompleteTableCellTextColor=[UIColor colorWithWhite:0.131 alpha:1.000];
+    _txtPlaceSearch.autoCompleteFontSize=14;
+    _txtPlaceSearch.autoCompleteTableBorderWidth=1.0;
+    _txtPlaceSearch.showTextFieldDropShadowWhenAutoCompleteTableIsOpen=YES;
+    _txtPlaceSearch.autoCompleteShouldHideOnSelection=YES;
+    _txtPlaceSearch.autoCompleteShouldHideClosingKeyboard=YES;
+    _txtPlaceSearch.autoCompleteShouldSelectOnExactMatchAutomatically = YES;
+    _txtPlaceSearch.autoCompleteTableFrame = CGRectMake(10, _txtPlaceSearch.frame.size.height+100.0, [Screen width]-20, 200.0);
 }
 
 - (void)dismissKeyboard {
@@ -171,7 +100,6 @@ replacementString:(NSString *)string {
     [self.dateButton setTitle:[dateFormatter stringFromDate:date] forState:UIControlStateNormal];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     self.selectedDate = [dateFormatter dateFromString:finalTime];
-    NSLog(@"%@", self.selectedDate);
 }
 
 //optional
@@ -182,43 +110,6 @@ replacementString:(NSString *)string {
 //optional
 - (void)hsDatePickerWillDismissWithQuitMethod:(HSDatePickerQuitMethod)method {
     //  NSLog(@"Picker will dismiss with %lu", (unsigned long)method);
-}
-
-- (void)loadFriends {
-    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    self.hud.mode = MBProgressHUDModeIndeterminate;
-    self.navigationItem.rightBarButtonItem.enabled = false;
-    self.friendsRelation = [self.currentUser relationForKey:@"friends"];
-    PFQuery *query = [self.friendsRelation query];
-    [query orderByAscending:@"surname"];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (error) {
-            NSLog(@"Error %@ %@", error, [error userInfo]);
-            [self.hud removeFromSuperview];
-        } else {
-            self.friendsList = objects;
-            [self.tableView reloadData];
-            self.navigationItem.rightBarButtonItem.enabled = true;
-            [self.hud removeFromSuperview];
-            self.friendHeight.constant = self.tableView.contentSize.height;
-        }
-    }];
-}
-
-- (IBAction)scrollToFriend:(id)sender {
-    if (!self.selectFriendButton.selected) {
-        scrollingProgrammatically = true;
-        [self.scrollView setContentOffset:CGPointMake(0, self.friendView.frame.origin.y) animated:YES];
-        //            UIView.animateWithDuration(0.1, animations: {
-        //                self.gradientViewIphone.alpha = 0.0
-        //            })
-        self.selectFriendButton.selected = true;
-    } else {
-        scrollingProgrammatically = true;
-        [self.scrollView scrollRectToVisible:self.headerView.frame animated:YES];
-        //            gradientViewIphone.alpha = 1
-        self.selectFriendButton.selected = false;
-    }
 }
 
 - (BOOL)verifications {
@@ -240,14 +131,6 @@ replacementString:(NSString *)string {
         ok = NO;
     }
     
-    // Check Friend
-    else if (self.recipientId.count == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localized(@"ERROR") message:Localized(@"Select Friend(s)") delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        alert.tag = 102;
-        [alert show];
-        ok = NO;
-    }
-    
     return ok;
 }
 
@@ -262,49 +145,46 @@ replacementString:(NSString *)string {
             [self showDatePicker:self.dateButton];
         }
     }
-    else if (alertView.tag == 102) {
-        if (buttonIndex == 0) {
-            scrollingProgrammatically = true;
-            [self.scrollView setContentOffset:CGPointMake(0, self.friendView.frame.origin.y) animated:YES];
-            self.selectFriendButton.selected = true;
-        }
-    }
 }
 
 - (IBAction)sendEvent:(id)sender {
     if ([self verifications]) {
-        NSLog(@"%@", self.recipientId);
-        PFObject *events = [PFObject objectWithClassName:@"Events"];
-        [events setObject:self.currentUser.objectId forKey:@"fromUserId"];
-        [events setObject:self.currentUser[@"surname"] forKey:@"fromUser"];
-        [events setObject:self.recipientId forKey:@"toUserId"];
-        [events setObject:self.recipientUser forKey:@"toUser"];
-        [events setObject:self.questionTextField.text forKey:@"question"];
-        [events setObject:[NSNumber numberWithBool:[self.mySwitch isOn]] forKey:@"visibility"];
-        [events addObject:[self.currentUser objectForKey:@"surname"] forKey:@"acceptedUser"];
-        [events setObject:self.selectedDate forKey:@"date"];
-        [events saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (error) {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"An error occurred!"
-                                                                    message:@"Please try sending your event again."
-                                                                   delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [alertView show];
-            } else {
-                NSMutableArray *pushNotifId = self.recipientId;
-                [pushNotifId removeObjectAtIndex:0];
-                [PFCloud callFunctionInBackground:@"pushEventNotification" withParameters:@{@"userId" : pushNotifId} block:^(id object, NSError *error) {
-                    if (!error) {
-                        NSLog(@"YES");
-                        AppDelegate *appDelegateTemp = (AppDelegate*)[[UIApplication sharedApplication]delegate];
-                        appDelegateTemp.window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
-                    } else {
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Try Again !" message:@"Check your network" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                        [alert show];
-                    }
-                }];
-            }
-        }];
+        [self performSegueWithIdentifier:@"showFriend" sender:self];
     }
 }
+
+#pragma mark - Place search Textfield Delegates
+-(void)placeSearch:(MVPlaceSearchTextField*)textField ResponseForSelectedPlace:(GMSPlace*)responseDict{
+    [self.view endEditing:YES];
+    NSLog(@"SELECTED ADDRESS :%@",responseDict);
+}
+-(void)placeSearchWillShowResult:(MVPlaceSearchTextField*)textField{
+    
+}
+-(void)placeSearchWillHideResult:(MVPlaceSearchTextField*)textField{
+    
+}
+-(void)placeSearch:(MVPlaceSearchTextField*)textField ResultCell:(UITableViewCell*)cell withPlaceObject:(PlaceObject*)placeObject atIndex:(NSInteger)index{
+    if(index%2==0){
+        cell.contentView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0];
+    }else{
+        cell.contentView.backgroundColor = [UIColor whiteColor];
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"showFriend"]) {
+        PFObject *events = [PFObject objectWithClassName:@"Events"];
+        [events setObject:self.questionTextField.text forKey:@"question"];
+        [events setObject:[NSNumber numberWithBool:[self.mySwitch isOn]] forKey:@"visibility"];
+        [events setObject:self.selectedDate forKey:@"date"];
+        
+        ShowFriendViewController *showFriendController = [segue destinationViewController];
+        showFriendController.currentUser = self.currentUser;
+        showFriendController.friendsList = self.friendsList;
+        showFriendController.eventObject = events;
+    }
+}
+
 
 @end

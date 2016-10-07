@@ -27,7 +27,9 @@
     [self configureAppearance];
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
     
-    PFQuery *friendsQuery = [self.friendsRelation query];
+    
+    self.currentUser = [PFUser currentUser];
+    PFQuery *friendsQuery = [[self.currentUser relationForKey:@"friends"] query];
     [friendsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         if (error) {
             NSLog(@"Error %@ %@", error, [error userInfo]);
@@ -40,9 +42,6 @@
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerTick:) userInfo:nil repeats:YES];
     
     //reloadEvents
-    self.currentUser = [PFUser currentUser];
-    self.friendsRelation = [[PFUser currentUser] relationForKey:@"friends"];
-    
     refreshControl = [[UIRefreshControl alloc]init];
     [refreshControl beginRefreshing];
     [self.tableView addSubview:refreshControl];
@@ -165,6 +164,7 @@
     if ([segue.identifier isEqualToString:@"addEvents"]) {
         AddEventsViewController *viewController = (AddEventsViewController *)segue.destinationViewController;
         viewController.friendsList = self.friends;
+        viewController.currentUser = self.currentUser;
     } else if ([segue.identifier isEqualToString:@"detailEvent"]) {
         EventDetailViewController *viewController = (EventDetailViewController *)segue.destinationViewController;
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
