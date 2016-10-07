@@ -200,6 +200,13 @@
 			isa = PBXGroup;
 			children = (
 				2C02345F1D8C489E002D5702 /* Chillin.entitlements */,
+				2C0233F01D8C4293002D5702 /* AppDelegate.h */,
+				2C0233F11D8C4293002D5702 /* AppDelegate.m */,
+				2C0233FB1D8C4293002D5702 /* LaunchScreen.storyboard */,
+				2C0233F61D8C4293002D5702 /* Main.storyboard */,
+				2C0233F91D8C4293002D5702 /* Assets.xcassets */,
+				2C0234501D8C443F002D5702 /* LaunchScreen.h */,
+				2C0234511D8C443F002D5702 /* LaunchScreen.m */,
 				2C0234581D8C47DB002D5702 /* Common */,
 				2C0234591D8C47EA002D5702 /* Login */,
 				2C02345A1D8C47F9002D5702 /* Sign Up */,
@@ -207,14 +214,7 @@
 				2C02345C1D8C481F002D5702 /* Edit Friends */,
 				2C02345D1D8C483E002D5702 /* Settings */,
 				2C02345E1D8C4855002D5702 /* Events */,
-				2C0233F01D8C4293002D5702 /* AppDelegate.h */,
-				2C0233F11D8C4293002D5702 /* AppDelegate.m */,
-				2C0233F61D8C4293002D5702 /* Main.storyboard */,
-				2C0233F91D8C4293002D5702 /* Assets.xcassets */,
-				2C0233FB1D8C4293002D5702 /* LaunchScreen.storyboard */,
 				2C0233FE1D8C4293002D5702 /* Info.plist */,
-				2C0234501D8C443F002D5702 /* LaunchScreen.h */,
-				2C0234511D8C443F002D5702 /* LaunchScreen.m */,
 				2C817B1F1DA7BEEB008D6348 /* MVPlaceSearchTextField */,
 				2C0233ED1D8C4293002D5702 /* Supporting Files */,
 			);

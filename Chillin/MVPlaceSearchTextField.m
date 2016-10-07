@@ -39,7 +39,7 @@
 
 
 -(void)awakeFromNib{
-
+    [super awakeFromNib];
     self.autoCompleteDataSource=self;
     self.autoCompleteDelegate=self;
     self.autoCompleteFontSize=14;
@@ -49,8 +49,8 @@
     self.maximumNumberOfAutoCompleteRows= 5;
     self.autoCompleteShouldHideClosingKeyboard = YES;
     _placesClient = [GMSPlacesClient sharedClient];
-    
 }
+
 #pragma mark - Datasource Autocomplete
 //example of asynchronous fetch:
 - (void)autoCompleteTextField:(MLPAutoCompleteTextField *)textField
@@ -62,9 +62,9 @@
         NSString *aQuery=textField.text;
         [NSObject cancelPreviousPerformRequestsWithTarget:_placesClient selector:@selector(autocompleteQuery:bounds:filter:callback:) object:self];
     
-        if(aQuery.length>0){
+        if(aQuery.length > 10){
             GMSAutocompleteFilter *filter = [[GMSAutocompleteFilter alloc] init];
-            filter.type = kGMSPlacesAutocompleteTypeFilterNoFilter;
+            filter.country = @"fr";
         
             
         

@@ -52,6 +52,11 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [application registerForRemoteNotifications];
     application.applicationIconBadgeNumber = 0;
     
+    UIImage *customBackButton = [[UIImage imageNamed:@"back"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [UINavigationBar appearance].backIndicatorImage = customBackButton;
+    [UINavigationBar appearance].backIndicatorTransitionMaskImage = customBackButton;
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
+    
     return YES;
 }
 

@@ -124,7 +124,7 @@ replacementString:(NSString *)string {
     }
     
     // Check Date
-    else if ([self.dateButton.titleLabel.text isEqualToString:Localized(@"Select Date")]) {
+    else if ([self.dateButton.titleLabel.text isEqualToString:@"Choisir Date"]) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:Localized(@"ERROR") message:Localized(@"Select Date") delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         alert.tag = 101;
         [alert show];
