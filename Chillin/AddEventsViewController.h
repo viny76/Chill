@@ -29,7 +29,6 @@
 @property (strong, nonatomic) NSDate *selectedDate;
 @property (strong, nonatomic) IBOutlet UIView *otherDetailsView;
 @property (strong, nonatomic) IBOutlet UIButton *sendButton;
-
-
+@property (nonatomic, strong) CLLocation *address;
 
 @end

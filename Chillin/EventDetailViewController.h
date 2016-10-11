@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface EventDetailViewController : UIViewController <UISearchBarDelegate, UISearchDisplayDelegate>
+@interface EventDetailViewController : UIViewController <UISearchBarDelegate, UISearchDisplayDelegate, CLLocationManagerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segment;
@@ -25,5 +25,9 @@
 @property (strong, nonatomic) IBOutlet UIView *questionView;
 @property (strong, nonatomic) IBOutlet UIButton *yesButton;
 @property (strong, nonatomic) IBOutlet UIButton *noButton;
+
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) CLGeocoder *geocoder;
+@property (strong, nonatomic) CLPlacemark *placemark;
 
 @end

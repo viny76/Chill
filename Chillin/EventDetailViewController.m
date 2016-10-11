@@ -59,6 +59,10 @@
         self.refusedParticipants = [self.event valueForKey:@"refusedUser"];
     }
     
+    // Get Location user
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.geocoder = [[CLGeocoder alloc] init];
+    
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
@@ -217,5 +221,40 @@
         }
     }];
 }
+
+- (IBAction)checkLocationButton:(id)sender {
+    self.locationManager.delegate = self;
+    self.locationManager.distanceFilter = 100.0;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager startUpdatingLocation];
+}
+
+#pragma mark - CLLocationManagerDelegate
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"didFailWithError: %@", error);
+    UIAlertView *errorAlert = [[UIAlertView alloc]
+                               initWithTitle:@"Error" message:@"Failed to Get Your Location" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [errorAlert show];
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    // Stop Location Manager
+    [self.locationManager stopUpdatingLocation];
+    
+    if (newLocation != nil) {
+        // Check if user is in
+        CLLocation *hardcoded_location = [[CLLocation alloc] initWithLatitude:[[self.event valueForKey:@"lat"] doubleValue] longitude:[[self.event valueForKey:@"long"] doubleValue]];
+        
+        CLLocationDistance distance = [hardcoded_location distanceFromLocation:newLocation];
+        
+        if (distance < 300) {
+            [[[UIAlertView alloc] initWithTitle:@"Bravo !" message:@"Tu viens de gagner de l'expérience !" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+        } else {
+            [[[UIAlertView alloc] initWithTitle:@"Désolé..." message:@"Tu n'es pas à l'événement." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil] show];
+        }
+    }
+}
+
 
 @end

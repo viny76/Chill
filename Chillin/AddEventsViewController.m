@@ -54,7 +54,7 @@
 }
 
 - (void)dismissKeyboard {
-    [self.questionTextField resignFirstResponder];
+    [self.view endEditing:YES];
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range
@@ -157,6 +157,7 @@ replacementString:(NSString *)string {
 -(void)placeSearch:(MVPlaceSearchTextField*)textField ResponseForSelectedPlace:(GMSPlace*)responseDict{
     [self.view endEditing:YES];
     NSLog(@"SELECTED ADDRESS :%@",responseDict);
+    self.address = [[CLLocation alloc] initWithLatitude:responseDict.coordinate.latitude longitude:responseDict.coordinate.longitude];
 }
 -(void)placeSearchWillShowResult:(MVPlaceSearchTextField*)textField{
     
@@ -178,6 +179,10 @@ replacementString:(NSString *)string {
         [events setObject:self.questionTextField.text forKey:@"question"];
         [events setObject:[NSNumber numberWithBool:[self.mySwitch isOn]] forKey:@"visibility"];
         [events setObject:self.selectedDate forKey:@"date"];
+        if (self.address != nil) {
+            [events setObject:[NSNumber numberWithDouble:self.address.coordinate.latitude] forKey:@"lat"];
+            [events setObject:[NSNumber numberWithDouble:self.address.coordinate.longitude] forKey:@"long"];
+        }
         
         ShowFriendViewController *showFriendController = [segue destinationViewController];
         showFriendController.currentUser = self.currentUser;
