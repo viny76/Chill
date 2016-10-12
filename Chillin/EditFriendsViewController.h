@@ -16,7 +16,7 @@
 #import "Person.h"
 #import "AppDelegate.h"
 
-@interface EditFriendsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate, UISearchResultsUpdating> {
+@interface EditFriendsViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchDisplayDelegate, UISearchResultsUpdating, UINavigationControllerDelegate> {
     NBPhoneNumberUtil *phoneUtil;
 }
 

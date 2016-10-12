@@ -5,6 +5,7 @@
 //  Copyright (c) 2014 Jardel Vincent. All rights reserved.
 
 #import "EditFriendsViewController.h"
+#import "HomeViewController.h"
 
 @interface EditFriendsViewController ()
 @end
@@ -37,6 +38,14 @@
     [self.searchController.searchBar sizeToFit];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if ([[self.navigationController.viewControllers objectAtIndex:0] isKindOfClass:[HomeViewController class]]) {
+        HomeViewController* viewController = (HomeViewController*)[self.navigationController.viewControllers objectAtIndex:0];
+        [viewController reloadFriend];
+    }
 }
 
 - (void)dealloc {
@@ -636,7 +645,16 @@
                          if (succeeded) {
                              [user deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                                  if (succeeded) {
+                                     [PFCloud callFunctionInBackground:@"pushFriendHasAccepted" withParameters:@{@"userId" : selectedUser.objectId} block:^(id object, NSError *error) {
+                                         if (!error) {
+                                             NSLog(@"YES");
+                                         } else {
+                                             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Try Again !" message:@"Check your network" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                                             [alert show];
+                                         }
+                                     }];
                                      [self loadFriends:NO];
+                                     
                                  }
                              }];
                          }
@@ -669,10 +687,18 @@
                 // Save & Send Request
                 [friendRequest saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                     if (succeeded) {
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sent !" message:@"Friend request sent" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Envoyée !" message:@"Demande d'ami envoyée" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                         [alert show];
                         [self.hud removeFromSuperview];
                         self.tableView.userInteractionEnabled = YES;
+                        [PFCloud callFunctionInBackground:@"pushAddFriendNotification" withParameters:@{@"userId" : selectedUser.objectId} block:^(id object, NSError *error) {
+                            if (!error) {
+                                NSLog(@"YES");
+                            } else {
+                                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Try Again !" message:@"Check your network" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                                [alert show];
+                            }
+                        }];
                     } else {
                         [self.hud removeFromSuperview];
                         self.tableView.userInteractionEnabled = YES;
@@ -680,7 +706,7 @@
                     }
                 }];
             } else {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"ERROR" message:@"Friend Request is Already Submitted" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erreur" message:@"La demande d'ami est déjà envoyée" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [alert show];
                 self.tableView.userInteractionEnabled = YES;
             }

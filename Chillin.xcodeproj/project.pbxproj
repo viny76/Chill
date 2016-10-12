@@ -119,10 +119,7 @@
 		2C0234501D8C443F002D5702 /* LaunchScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchScreen.h; sourceTree = "<group>"; };
 		2C0234511D8C443F002D5702 /* LaunchScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchScreen.m; sourceTree = "<group>"; };
 		2C02345F1D8C489E002D5702 /* Chillin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chillin.entitlements; sourceTree = "<group>"; };
-		2C0234611D8C8F0B002D5702 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
-		2C0234621D8C8F0B002D5702 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		2C0234691D8C8F6C002D5702 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		2C02346A1D8C8F77002D5702 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		2C589BE31DACF23B00F19818 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C5E59871DA7F41D001B69FD /* ShowFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowFriendViewController.h; sourceTree = "<group>"; };
 		2C5E59881DA7F41D001B69FD /* ShowFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowFriendViewController.m; sourceTree = "<group>"; };
 		2C817B211DA7BF08008D6348 /* MVPlaceSearchTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MVPlaceSearchTextField.h; sourceTree = "<group>"; };
@@ -489,9 +486,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
-				fr,
 			);
 			mainGroup = 2C0233E11D8C4293002D5702;
 			productRefGroup = 2C0233EB1D8C4293002D5702 /* Products */;
@@ -727,7 +722,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				2C0233F71D8C4293002D5702 /* Base */,
-				2C0234611D8C8F0B002D5702 /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -736,7 +730,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				2C0233FC1D8C4293002D5702 /* Base */,
-				2C0234621D8C8F0B002D5702 /* fr */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -744,8 +737,7 @@
 		2C0234671D8C8F65002D5702 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2C0234691D8C8F6C002D5702 /* fr */,
-				2C02346A1D8C8F77002D5702 /* en */,
+				2C589BE31DACF23B00F19818 /* Base */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";

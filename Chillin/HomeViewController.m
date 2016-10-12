@@ -24,19 +24,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.sampleData = [[NSMutableArray alloc] init];
     [self configureAppearance];
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
     
     
     self.currentUser = [PFUser currentUser];
-    PFQuery *friendsQuery = [[self.currentUser relationForKey:@"friends"] query];
-    [friendsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (error) {
-            NSLog(@"Error %@ %@", error, [error userInfo]);
-        } else {
-            self.friends = objects;
-        }
-    }];
+    [self reloadFriend];
     
     // Launch Timer
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerTick:) userInfo:nil repeats:YES];
@@ -65,12 +59,16 @@
 }
 
 #pragma mark - Table view data source
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView; {
+    return self.sampleData.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.mutableEvents.count;
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section; {
+    return self.sampleData[section][@"date"];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section; {
+    return [self.sampleData[section][@"group"] count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -86,17 +84,17 @@
     static NSString *CellIdentifier = @"parallaxCell";
     HomeCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    cell.titleLabel.text = [NSString stringWithFormat:@"%@", [self.mutableEvents objectAtIndex:indexPath.row]];
-    cell.subtitleLabel.text = [NSString stringWithFormat:@"%@", [self.mutableAuthor objectAtIndex:indexPath.row]];
-    cell.yesButton.tag = indexPath.row;
-    cell.noButton.tag = indexPath.row;
+    PFObject *post = self.sampleData[indexPath.section][@"group"][indexPath.row];
     
-    if (![[[self.events valueForKey:@"acceptedUser"] objectAtIndex:indexPath.row] isEqual:[NSNull null]] &&
-        [[[self.events valueForKey:@"acceptedUser"] objectAtIndex:indexPath.row] containsObject:[self.currentUser objectForKey:@"surname"]]) {
+    cell.titleLabel.text = [NSString stringWithFormat:@"%@", [post objectForKey:@"question"]];
+    cell.subtitleLabel.text = [NSString stringWithFormat:@"%@", [post objectForKey:@"fromUser"]];
+    
+    if (![[post objectForKey:@"acceptedUser"] isEqual:[NSNull null]] &&
+        [[post objectForKey:@"acceptedUser"] containsObject:[self.currentUser objectForKey:@"surname"]]) {
         cell.yesButton.selected = YES;
         cell.noButton.selected = NO;
-    } else if (![[[self.events valueForKey:@"refusedUser"] objectAtIndex:indexPath.row] isEqual:[NSNull null]] &&
-               [[[self.events valueForKey:@"refusedUser"] objectAtIndex:indexPath.row] containsObject:[self.currentUser objectForKey:@"surname"]]) {
+    } else if (![[post objectForKey:@"refusedUser"] isEqual:[NSNull null]] &&
+               [[post objectForKey:@"refusedUser"] containsObject:[self.currentUser objectForKey:@"surname"]]) {
         cell.yesButton.selected = NO;
         cell.noButton.selected = YES;
     } else {
@@ -109,17 +107,48 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     [cell setBackgroundColor:[UIColor clearColor]];
-    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-    self.selectedEvent = [self.events objectAtIndex:indexPath.row];
+    PFObject *post = self.sampleData[indexPath.section][@"group"][indexPath.row];
+    self.selectedEvent = post;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    PFObject *post = self.sampleData[indexPath.section][@"group"][indexPath.row];
+    //    PFUser *user = [[self.events valueForKey:@"fromUserId"] objectAtIndex:indexPath.row];
+    PFUser *user = [post objectForKey:@"fromUserId"];
+    if ([user  isEqual: [[PFUser currentUser] objectId]]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //add code here for when you hit delete
+        PFObject *object = self.sampleData[indexPath.section][@"group"][indexPath.row];
+        [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                [self.sampleData removeObjectAtIndex:indexPath.row];
+                [self.tableView reloadData];
+                [self reloadEvents];
+            } else {
+                NSLog(@"error");
+            }
+        }];
+    }
 }
 
 - (IBAction)yesButton:(id)sender {
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero
+                                           toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
     PFQuery *query = [PFQuery queryWithClassName:@"Events"];
-    [query whereKey:@"objectId" equalTo:[[self.events objectAtIndex:[sender tag]] valueForKey:@"objectId"]];
+    [query whereKey:@"objectId" equalTo:[[[self.sampleData objectAtIndex:indexPath.section][@"group"] objectAtIndex:indexPath.row] valueForKey:@"objectId"]];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if (!error) {
             if ([[object valueForKey:@"acceptedUser"] containsObject:[self.currentUser objectForKey:@"surname"]]) {
@@ -139,8 +168,11 @@
 }
 
 - (IBAction)noButton:(id)sender {
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero
+                                           toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:buttonPosition];
     PFQuery *query = [PFQuery queryWithClassName:@"Events"];
-    [query whereKey:@"objectId" equalTo:[[self.events objectAtIndex:[sender tag]] valueForKey:@"objectId"]];
+    [query whereKey:@"objectId" equalTo:[[[self.sampleData objectAtIndex:indexPath.section][@"group"] objectAtIndex:indexPath.row] valueForKey:@"objectId"]];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if (!error) {
             if ([[object valueForKey:@"refusedUser"] containsObject:[self.currentUser objectForKey:@"surname"]]) {
@@ -168,52 +200,69 @@
     } else if ([segue.identifier isEqualToString:@"detailEvent"]) {
         EventDetailViewController *viewController = (EventDetailViewController *)segue.destinationViewController;
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        viewController.event = [self.events objectAtIndex:indexPath.row];
+        PFObject *post = self.sampleData[indexPath.section][@"group"][indexPath.row];
+        viewController.event = post;
         viewController.currentUser = self.currentUser;
-    }
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return YES if you want the specified item to be editable.
-    PFUser *user = [[self.events valueForKey:@"fromUserId"] objectAtIndex:indexPath.row];
-    if ([user  isEqual: [[PFUser currentUser] objectId]]) {
-        return YES;
-    } else {
-        return NO;
-    }
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        //add code here for when you hit delete
-        PFObject *object = [self.events objectAtIndex:indexPath.row];
-        [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                [self.mutableEvents removeObjectAtIndex:indexPath.row];
-                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-                [self reloadEvents];
-            } else {
-                NSLog(@"error");
-            }
-        }];
     }
 }
 
 - (void)reloadEvents {
     PFQuery *eventsQuery = [PFQuery queryWithClassName:@"Events"];
     [eventsQuery whereKey:@"toUserId" equalTo:[[PFUser currentUser] objectId]];
-    [eventsQuery orderByAscending:@"date"];
+    [eventsQuery orderByDescending:@"date"];
     if (eventsQuery) {
         [eventsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (error) {
                 NSLog(@"Error: %@ %@", error, [error userInfo]);
             } else {
                 // We found messages!
-                self.events = objects;
-                self.eventsTitle = [self.events valueForKey:@"question"];
-                self.mutableEvents = [[NSMutableArray alloc] initWithArray:self.eventsTitle];
-                self.author = [self.events valueForKey:@"fromUser"];
-                self.mutableAuthor = [[NSMutableArray alloc] initWithArray:self.author];
+
+                // Sort array by NSDate
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                // Add the following line to display the time in the local time zone
+                [formatter setTimeZone:[NSTimeZone systemTimeZone]];
+                [formatter setDateFormat:@"dd/MM/yyyy"];
+                [formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+                
+                // Sparse dictionary, containing keys for "days with posts"
+                NSMutableDictionary *daysWithPosts = [NSMutableDictionary dictionary];
+                
+                [objects enumerateObjectsUsingBlock:^(PFObject *object, NSUInteger idx, BOOL *stop) {
+                    NSString *dateString = [formatter stringFromDate:[object objectForKey:@"date"]];
+                    
+                    // Check to see if we have a day already.
+                    NSMutableArray *posts = [daysWithPosts objectForKey: dateString];
+                    
+                    // If not, create it
+                    if (posts == nil || (id)posts == [NSNull null])
+                    {
+                        posts = [NSMutableArray arrayWithCapacity:1];
+                        [daysWithPosts setObject:posts forKey: dateString];
+                    }
+                    
+                    // add post to day
+                    [posts addObject:object];
+                }];
+                
+                // Sort Dictionary Keys by Date
+                NSArray *unsortedSectionTitles = [daysWithPosts allKeys];
+                NSArray *sortedSectionTitles = [unsortedSectionTitles sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+                    NSDate *date1 = [formatter dateFromString:obj1];
+                    NSDate *date2 = [formatter dateFromString:obj2];
+                    return [date2 compare:date1];
+                }];
+                
+                NSMutableArray *sortedData = [NSMutableArray arrayWithCapacity:sortedSectionTitles.count];
+                
+                // Put Data into correct format:
+                [sortedSectionTitles enumerateObjectsUsingBlock:^(NSString *dateString, NSUInteger idx, BOOL *stop) {
+                    NSArray *group = daysWithPosts[dateString];
+                    NSDictionary *dictionary = @{ @"date":dateString,
+                                                  @"group":group };
+                    [sortedData addObject:dictionary];
+                }];
+                
+                self.sampleData = sortedData;
                 [refreshControl endRefreshing];
                 [self.tableView reloadData];
                 
@@ -272,6 +321,17 @@
         self.timerString = [NSString stringWithFormat:@"Rafraîchit il y a %2.0fsec", seconds];
     }
     refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:self.timerString];
+}
+
+- (void)reloadFriend {
+    PFQuery *friendsQuery = [[self.currentUser relationForKey:@"friends"] query];
+    [friendsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (error) {
+            NSLog(@"Error %@ %@", error, [error userInfo]);
+        } else {
+            self.friends = objects;
+        }
+    }];
 }
 
 @end
