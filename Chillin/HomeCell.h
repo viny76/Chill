@@ -14,5 +14,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *subtitleLabel;
 @property (strong, nonatomic) IBOutlet UIButton *yesButton;
 @property (strong, nonatomic) IBOutlet UIButton *noButton;
+@property (weak, nonatomic) IBOutlet UILabel *participantLabel;
+@property (weak, nonatomic) IBOutlet UILabel *refusantLabel;
+@property (weak, nonatomic) IBOutlet UILabel *hourLabel;
 
 @end

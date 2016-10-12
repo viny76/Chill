@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface HomeViewController : UIViewController <UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource> {
+@interface HomeViewController : UIViewController <UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate> {
     UIRefreshControl *refreshControl;
 }
 

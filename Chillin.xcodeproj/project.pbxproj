@@ -34,6 +34,7 @@
 		2C0234571D8C443F002D5702 /* LaunchScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C0234511D8C443F002D5702 /* LaunchScreen.m */; };
 		2C0234601D8C8CA0002D5702 /* Wolf-in-the-City.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2C0234441D8C441C002D5702 /* Wolf-in-the-City.ttf */; };
 		2C0234651D8C8F65002D5702 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C0234671D8C8F65002D5702 /* Localizable.strings */; };
+		2C233BBE1DAE8B4C003401BA /* AddGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C233BBD1DAE8B4C003401BA /* AddGroupViewController.m */; };
 		2C5E59891DA7F41D001B69FD /* ShowFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5E59881DA7F41D001B69FD /* ShowFriendViewController.m */; };
 		2C817B271DA7BF08008D6348 /* MVPlaceSearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C817B221DA7BF08008D6348 /* MVPlaceSearchTextField.m */; };
 		2C817B281DA7BF08008D6348 /* PlaceDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C817B241DA7BF08008D6348 /* PlaceDetail.m */; };
@@ -119,6 +120,8 @@
 		2C0234501D8C443F002D5702 /* LaunchScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchScreen.h; sourceTree = "<group>"; };
 		2C0234511D8C443F002D5702 /* LaunchScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchScreen.m; sourceTree = "<group>"; };
 		2C02345F1D8C489E002D5702 /* Chillin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chillin.entitlements; sourceTree = "<group>"; };
+		2C233BBC1DAE8B4C003401BA /* AddGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddGroupViewController.h; sourceTree = "<group>"; };
+		2C233BBD1DAE8B4C003401BA /* AddGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddGroupViewController.m; sourceTree = "<group>"; };
 		2C589BE31DACF23B00F19818 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2C5E59871DA7F41D001B69FD /* ShowFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowFriendViewController.h; sourceTree = "<group>"; };
 		2C5E59881DA7F41D001B69FD /* ShowFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowFriendViewController.m; sourceTree = "<group>"; };
@@ -326,6 +329,8 @@
 				2C02343F1D8C43AA002D5702 /* AddEventsViewController.m */,
 				2C5E59871DA7F41D001B69FD /* ShowFriendViewController.h */,
 				2C5E59881DA7F41D001B69FD /* ShowFriendViewController.m */,
+				2C233BBC1DAE8B4C003401BA /* AddGroupViewController.h */,
+				2C233BBD1DAE8B4C003401BA /* AddGroupViewController.m */,
 				2C0234411D8C43B2002D5702 /* EventDetailViewController.h */,
 				2C0234421D8C43B2002D5702 /* EventDetailViewController.m */,
 			);
@@ -669,6 +674,7 @@
 				2C817B281DA7BF08008D6348 /* PlaceDetail.m in Sources */,
 				2C0234541D8C443F002D5702 /* Screen.m in Sources */,
 				2C817B311DA7BF14008D6348 /* MLPAutoCompleteTextField.m in Sources */,
+				2C233BBE1DAE8B4C003401BA /* AddGroupViewController.m in Sources */,
 				2C02343A1D8C439A002D5702 /* LabelButtonTableViewCell.m in Sources */,
 				2C0234561D8C443F002D5702 /* UIColor+CustomColors.m in Sources */,
 				2C0234431D8C43B2002D5702 /* EventDetailViewController.m in Sources */,

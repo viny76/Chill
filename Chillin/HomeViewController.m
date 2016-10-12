@@ -17,7 +17,7 @@
 #import "CBZSplashView.h"
 #import "UIColor+CustomColors.h"
 
-@interface HomeViewController() <UIScrollViewDelegate>
+@interface HomeViewController()
 @end
 
 @implementation HomeViewController
@@ -27,7 +27,6 @@
     self.sampleData = [[NSMutableArray alloc] init];
     [self configureAppearance];
     self.tableView.allowsMultipleSelectionDuringEditing = NO;
-    
     
     self.currentUser = [PFUser currentUser];
     [self reloadFriend];
@@ -73,11 +72,21 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     // iPhone 6
+    int totalDisplayZone = [Screen height]-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height;
     if ([Screen height] > 568) {
-        return ([Screen height]-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height)/6;
+        return totalDisplayZone/6;
     } else {
-        return ([Screen height]-self.navigationController.navigationBar.frame.size.height-[UIApplication sharedApplication].statusBarFrame.size.height)/4;
+        return totalDisplayZone/4;
     }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
+    // Background color
+    view.tintColor = [UIColor darkGrayColor];
+    
+    // Text Color
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+    [header.textLabel setTextColor:[UIColor whiteColor]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -88,6 +97,14 @@
     
     cell.titleLabel.text = [NSString stringWithFormat:@"%@", [post objectForKey:@"question"]];
     cell.subtitleLabel.text = [NSString stringWithFormat:@"%@", [post objectForKey:@"fromUser"]];
+    cell.participantLabel.text = [NSString stringWithFormat:@"%lu", [[post objectForKey:@"acceptedUser"] count]];
+    cell.refusantLabel.text = [NSString stringWithFormat:@"%lu", [[post objectForKey:@"refusedUser"] count]];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    // Add the following line to display the time in the local time zone
+    [formatter setTimeZone:[NSTimeZone systemTimeZone]];
+    [formatter setDateFormat:@"HH:mm"];
+    [formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    cell.hourLabel.text = [formatter stringFromDate:[post objectForKey:@"date"]];
     
     if (![[post objectForKey:@"acceptedUser"] isEqual:[NSNull null]] &&
         [[post objectForKey:@"acceptedUser"] containsObject:[self.currentUser objectForKey:@"surname"]]) {
@@ -160,7 +177,12 @@
                 [object addObject:[self.currentUser objectForKey:@"surname"] forKey:@"acceptedUser"];
             }
             
-            [object saveInBackground];
+            [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if (succeeded) {
+                    // A REVOIR : recharger que l'event en question.
+                    [self reloadEvents];
+                }
+            }];
         } else {
             NSLog(@"Error: %@", error);
         }
@@ -184,8 +206,12 @@
                 [object addObject:[self.currentUser objectForKey:@"surname"] forKey:@"refusedUser"];
             }
             
-            
-            [object saveInBackground];
+            [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if (succeeded) {
+                    // A REVOIR : recharger que l'event en question.
+                    [self reloadEvents];
+                }
+            }];
         } else {
             NSLog(@"Error: %@", error);
         }

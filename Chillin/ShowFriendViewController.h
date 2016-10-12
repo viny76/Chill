@@ -16,6 +16,7 @@
 @property (nonatomic) PFObject *eventObject;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *friendsList;
+@property (strong, nonatomic) NSArray *groupList;
 @property (strong, nonatomic) NSMutableArray *recipientId;
 @property (strong, nonatomic) NSMutableArray *recipientUser;
 @property (strong, nonatomic) NSString *fromUserId;
@@ -26,5 +27,8 @@
 @property (strong, nonatomic) MBProgressHUD *hud;
 @property (strong, nonatomic) PFRelation *friendsRelation;
 @property (weak, nonatomic) IBOutlet UIButton *sendButton;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segment;
+
+- (void)loadGroup;
 
 @end

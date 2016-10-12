@@ -18,14 +18,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.sendButton sizeToFit];
-    
-    //Hide Keyboard when tapping other area
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
-                                   initWithTarget:self
-                                   action:@selector(dismissKeyboard)];
-    //IMPORTANT !!!
-    tap.cancelsTouchesInView = NO;
-    [self.view addGestureRecognizer:tap];
     self.mySwitch.on = YES;
     
     //UITextField Google Maps
@@ -49,6 +41,7 @@
     _txtPlaceSearch.showTextFieldDropShadowWhenAutoCompleteTableIsOpen=YES;
     _txtPlaceSearch.autoCompleteShouldHideOnSelection=YES;
     _txtPlaceSearch.autoCompleteShouldHideClosingKeyboard=YES;
+    _txtPlaceSearch.autoCompleteFetchRequestDelay = 1; // Save Maps API request
     _txtPlaceSearch.autoCompleteShouldSelectOnExactMatchAutomatically = YES;
     _txtPlaceSearch.autoCompleteTableFrame = CGRectMake(10, _txtPlaceSearch.frame.size.height+100.0, [Screen width]-20, 200.0);
 }
