@@ -16,6 +16,7 @@ pod 'HSDatePickerViewController', '~> 1.0'
 pod 'SevenSwitch', '~> 1.4'
 pod 'GoogleMaps'
 pod 'GooglePlaces'
+pod 'MEAlertView', '~> 1.0.0'
   target 'ChillinTests' do
     inherit! :search_paths
     # Pods for testing

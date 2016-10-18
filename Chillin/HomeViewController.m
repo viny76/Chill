@@ -82,11 +82,11 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section {
     // Background color
-    view.tintColor = [UIColor darkGrayColor];
+    view.tintColor = [UIColor whiteColor];
     
     // Text Color
     UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
-    [header.textLabel setTextColor:[UIColor whiteColor]];
+    [header.textLabel setTextColor:[UIColor colorWithHexString:@"5394FC"]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -119,7 +119,40 @@
         cell.noButton.selected = NO;
     }
     
+    NSInteger rowNumber = 0;
+    for (NSInteger i = 0; i < indexPath.section; i++) {
+        rowNumber += [self.tableView numberOfRowsInSection:i];
+    }
+    NSLog(@"%ld", (long)rowNumber);
+    
+    rowNumber += indexPath.row;
+    switch (rowNumber % 2) {
+        case 0:
+            cell.contentView.backgroundColor = [UIColor colorWithHexString:@"5394FC"];
+            break;
+        case 1:
+            cell.contentView.backgroundColor = [UIColor colorWithHexString:@"0E66F1"];
+            break;
+//        case 2:
+//            cell.contentView.backgroundColor = [UIColor colorWithHexString:@"0E66F1"];
+//            break;
+//        case 3:
+//            cell.contentView.backgroundColor = [UIColor colorWithHexString:@"1871FD"];
+//            break;
+            
+        default:
+            break;
+    }
+    
     return cell;
+}
+
+- (int)getPosition:(int)section rowNumber:(int)row {
+    int position = 0;
+    for (int i = 0; i < section; i++) {
+        position += [self.sampleData[i] count];
+    }
+    return position + row;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -150,8 +183,6 @@
         PFObject *object = self.sampleData[indexPath.section][@"group"][indexPath.row];
         [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
-                [self.sampleData removeObjectAtIndex:indexPath.row];
-                [self.tableView reloadData];
                 [self reloadEvents];
             } else {
                 NSLog(@"error");
@@ -233,9 +264,15 @@
 }
 
 - (void)reloadEvents {
-    PFQuery *eventsQuery = [PFQuery queryWithClassName:@"Events"];
-    [eventsQuery whereKey:@"toUserId" equalTo:[[PFUser currentUser] objectId]];
-    [eventsQuery orderByDescending:@"date"];
+    PFQuery *eventsQuery1 = [PFQuery queryWithClassName:@"Events"];
+    [eventsQuery1 whereKey:@"toUserId" equalTo:[[PFUser currentUser] objectId]];
+    
+    PFQuery *eventsQuery2 = [PFQuery queryWithClassName:@"Events"];
+    [eventsQuery2 whereKey:@"fromUserId" equalTo:[[PFUser currentUser] objectId]];
+    
+    PFQuery *eventsQuery = [PFQuery orQueryWithSubqueries:@[eventsQuery1,eventsQuery2]];
+    [eventsQuery orderByAscending:@"date"];
+    
     if (eventsQuery) {
         [eventsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
             if (error) {
@@ -275,7 +312,7 @@
                 NSArray *sortedSectionTitles = [unsortedSectionTitles sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
                     NSDate *date1 = [formatter dateFromString:obj1];
                     NSDate *date2 = [formatter dateFromString:obj2];
-                    return [date2 compare:date1];
+                    return [date1 compare:date2];
                 }];
                 
                 NSMutableArray *sortedData = [NSMutableArray arrayWithCapacity:sortedSectionTitles.count];
@@ -305,8 +342,8 @@
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorChillin]];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
-    
-    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"]];
+//    self.tableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background"]];
+    self.tableView.backgroundColor = [UIColor colorChillin];
     [self.tableView.backgroundView setContentMode:UIViewContentModeScaleAspectFill];
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     

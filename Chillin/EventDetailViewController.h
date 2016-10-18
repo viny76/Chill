@@ -19,7 +19,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property(nonatomic,strong) PFObject *event;
 @property(nonatomic,strong) PFUser *currentUser;
-@property(nonatomic, strong) NSArray *allParticipants;
+@property(nonatomic, strong) NSMutableArray *allParticipants;
 @property(nonatomic, strong) NSArray *participants;
 @property(nonatomic, strong) NSArray *refusedParticipants;
 @property (strong, nonatomic) IBOutlet UIView *questionView;

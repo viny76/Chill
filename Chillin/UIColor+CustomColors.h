@@ -15,5 +15,6 @@
 + (UIColor *)colorHeaderLabel;
 + (UIColor *)colorLabelAndButtonCell;
 + (UIColor *)colorBorder;
++ (UIColor*)colorWithHexString:(NSString*)hex;
 
 @end

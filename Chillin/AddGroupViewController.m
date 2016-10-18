@@ -21,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.recipientId = [[NSMutableArray alloc] init];
+    self.recipientUser = [[NSMutableArray alloc] init];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -55,12 +56,12 @@
     
     if (cell.accessoryType == UITableViewCellAccessoryNone) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        [self.recipientId addObject:[PFUser currentUser].objectId];
         [self.recipientId addObject:user.objectId];
+        [self.recipientUser addObject:user[@"surname"]];
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
-        [self.recipientId removeObject:user.objectId];
         [self.recipientId removeObject:[PFUser currentUser].objectId];
+        [self.recipientUser removeObject:user[@"surname"]];
     }
 }
 
@@ -99,6 +100,7 @@
         [object setObject:self.textField.text forKey:@"name"];
         [object setObject:[PFUser currentUser].objectId forKey:@"fromUserId"];
         [object setObject:self.recipientId forKey:@"recipientId"];
+        [object setObject:self.recipientUser forKey:@"userSurname"];
         [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
             if (succeeded) {
                 [[self navigationController] popViewControllerAnimated:YES];

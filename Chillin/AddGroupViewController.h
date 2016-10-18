@@ -13,5 +13,6 @@
 @property (strong, nonatomic) NSArray *friendsList;
 @property (strong, nonatomic) NSMutableArray *recipientId;
 @property (strong, nonatomic) UITextField *textField;
+@property (strong, nonatomic) NSMutableArray *recipientUser;
 
 @end

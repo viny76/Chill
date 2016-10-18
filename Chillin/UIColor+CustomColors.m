@@ -11,7 +11,7 @@
 
 // Wall weight graph background + Calendar future medication to take point color
 + (UIColor *)colorChillin {
-    return [UIColor colorWithRed:89.0/255.0 green:253.0/255.0f blue:91.0/255.0f alpha:1.0f];
+    return [UIColor colorWithRed:79.0/255.0 green:145.0/255.0f blue:254.0/255.0f alpha:1.0f];
 }
 
 + (UIColor *)colorBlueButton {
@@ -32,6 +32,41 @@
 
 + (UIColor *)colorBorder {
     return [UIColor colorWithRed:232.0/255.0 green:232.0/255.0 blue:232.0/255.0f alpha:1.0];
+}
+
++ (UIColor*)colorWithHexString:(NSString*)hex {
+    NSString *cString = [[hex stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
+    
+    // String should be 6 or 8 characters
+    if ([cString length] < 6) return [UIColor grayColor];
+    
+    // strip 0X if it appears
+    if ([cString hasPrefix:@"0X"]) cString = [cString substringFromIndex:2];
+    
+    if ([cString length] != 6) return  [UIColor grayColor];
+    
+    // Separate into r, g, b substrings
+    NSRange range;
+    range.location = 0;
+    range.length = 2;
+    NSString *rString = [cString substringWithRange:range];
+    
+    range.location = 2;
+    NSString *gString = [cString substringWithRange:range];
+    
+    range.location = 4;
+    NSString *bString = [cString substringWithRange:range];
+    
+    // Scan values
+    unsigned int r, g, b;
+    [[NSScanner scannerWithString:rString] scanHexInt:&r];
+    [[NSScanner scannerWithString:gString] scanHexInt:&g];
+    [[NSScanner scannerWithString:bString] scanHexInt:&b];
+    
+    return [UIColor colorWithRed:((float) r / 255.0f)
+                           green:((float) g / 255.0f)
+                            blue:((float) b / 255.0f)
+                           alpha:1.0f];
 }
 
 @end

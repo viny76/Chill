@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MEAlertView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -77,7 +82,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>38778CB2AA7281361DA2CB458DCA4131</key>
+		<key>2F4FC50DFF3BEA89571CE0485A8A30E5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>302D600C56B3C441FEBEB62315C324F3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -107,22 +117,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>93DA3E9F510ECBF1A41F1DF2030D5439</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>A050E537B3F45BD39D3B0577AA4AD302</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F8822EBFFB60FBCD22524BBF5D2A58DC</key>
+		<key>CC47393C42E41FFE3460F37EF225D7A4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>FE2F1D7B9D9FCEA148517E4657B243F4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FE478AD8EC4D6448D741F4D6E17B8FFC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

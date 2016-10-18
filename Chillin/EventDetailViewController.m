@@ -16,7 +16,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Reload event
+    // Load event
     PFQuery *query = [PFQuery queryWithClassName:@"Events"];
     [query whereKey:@"objectId" equalTo:[self.event objectId]];
     [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
@@ -24,6 +24,7 @@
             self.event = object;
             self.participants = [self.event valueForKey:@"acceptedUser"];
             self.allParticipants = [self.event valueForKey:@"toUser"];
+            [self.allParticipants addObject:[self.event valueForKey:@"fromUser"]];
             self.refusedParticipants = [self.event valueForKey:@"refusedUser"];
             
             if ([[self.event valueForKey:@"acceptedUser"] containsObject:[self.currentUser objectForKey:@"surname"]]) {
@@ -214,6 +215,7 @@
             NSLog(@"CHECK %@", object);
             self.participants = [self.event valueForKey:@"acceptedUser"];
             self.allParticipants = [self.event valueForKey:@"toUser"];
+            [self.allParticipants addObject:[self.event valueForKey:@"fromUser"]];
             self.refusedParticipants = [self.event valueForKey:@"refusedUser"];
             [self.tableView reloadData];
         } else {

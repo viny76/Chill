@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 @import GoogleMaps;
 @import GooglePlaces;
+#import "EventDetailViewController.h"
+#import "HomeViewController.h"
 
 
 @interface AppDelegate ()
@@ -73,10 +75,52 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [PFPush handlePush:userInfo];
     if ([PFUser currentUser].objectId) {
-        self.window.rootViewController = [[UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]] instantiateInitialViewController];
+        self.objectId = userInfo[@"eventId"];
+        if ([self.objectId stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]  != 0 && self.objectId != nil) {
+            if (application.applicationState == UIApplicationStateActive) {
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle: userInfo[@"aps"][@"alert"]
+                                                                message: nil
+                                                               delegate: self
+                                                      cancelButtonTitle: @"Annuler"
+                                                      otherButtonTitles: @"Voir", nil];
+                alert.tag = 100;
+                [alert show];
+                
+            } else if (application.applicationState == UIApplicationStateBackground || application.applicationState == UIApplicationStateInactive) {
+                [self moveToDetailEvent];
+            }
+        } else {
+            [PFPush handlePush:userInfo];
+        }
     }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (alertView.tag == 100) {
+        if (buttonIndex == 1) {
+            [self moveToDetailEvent];
+        }
+    }
+}
+
+- (void)moveToDetailEvent {
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UINavigationController *navController = (UINavigationController *)self.window.rootViewController;
+    EventDetailViewController *eventDetailVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"EventDetail"];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Events"];
+    [query whereKey:@"objectId" equalTo:self.objectId];
+    [query getFirstObjectInBackgroundWithBlock:^(PFObject * _Nullable object, NSError * _Nullable error) {
+        if (!error) {
+            eventDetailVC.event = object;
+            
+            [navController setViewControllers:@[[mainStoryboard instantiateViewControllerWithIdentifier:@"Main"],
+                                                eventDetailVC]
+                                     animated:NO];
+        }
+    }];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

@@ -78,28 +78,25 @@
         PFUser *user = [self.friendsList objectAtIndex:indexPath.row];
         if (cell.accessoryType == UITableViewCellAccessoryNone) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
-            [self.recipientId addObject:self.currentUser.objectId];
             [self.recipientId addObject:user.objectId];
             [self.recipientUser addObject:user[@"surname"]];
         } else {
             cell.accessoryType = UITableViewCellAccessoryNone;
             [self.recipientId removeObject:user.objectId];
-            [self.recipientId removeObject:self.currentUser.objectId];
             [self.recipientUser removeObject:user[@"surname"]];
         }
     } else if (self.segment.selectedSegmentIndex == 1) {
         if (cell.accessoryType == UITableViewCellAccessoryNone) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
             [self.recipientId addObject:[[self.groupList objectAtIndex:indexPath.row] objectForKey:@"recipientId"]];
-            NSLog(@"%@", [self.recipientId description]);
+            [self.recipientUser addObject:[[self.groupList objectAtIndex:indexPath.row] objectForKey:@"userSurname"]];
         } else {
             cell.accessoryType = UITableViewCellAccessoryNone;
             [self.recipientId removeObject:[[self.groupList objectAtIndex:indexPath.row] objectForKey:@"recipientId"]];
-            NSLog(@"%@", [self.recipientId description]);
+            [self.recipientUser removeObject:[[self.groupList objectAtIndex:indexPath.row] objectForKey:@"userSurname"]];
         }
     }
 }
-
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
@@ -131,6 +128,28 @@
         return 30;
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.segment.selectedSegmentIndex == 1) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        //add code here for when you hit delete
+        PFObject *object = self.groupList[indexPath.row];
+        [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                [self loadGroup];
+            } else {
+                NSLog(@"error");
+            }
+        }];
+    }
+}
+
 - (IBAction)sendEvent:(id)sender {
     if (self.recipientId.count != 0) {
         [self.eventObject setObject:self.currentUser.objectId forKey:@"fromUserId"];
@@ -140,12 +159,8 @@
             [self.eventObject setObject:self.recipientId forKey:@"toUserId"];
             [self.eventObject setObject:self.recipientUser forKey:@"toUser"];
         } else if (self.segment.selectedSegmentIndex == 1) {
-            NSMutableArray *finalArray = [NSMutableArray array];
-            for (NSArray *innerArray in self.recipientId) {
-                [finalArray addObjectsFromArray:innerArray];
-            }
-            
-            [self.eventObject setObject:finalArray forKey:@"toUserId"];
+            [self.eventObject setObject:[self.recipientId valueForKeyPath:@"@unionOfArrays.self"] forKey:@"toUserId"];
+            [self.eventObject setObject:[self.recipientUser valueForKeyPath:@"@unionOfArrays.self"] forKey:@"toUser"];
         }
 
         [self.eventObject saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -155,9 +170,20 @@
                                                                    delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [alertView show];
             } else {
-                NSMutableArray *pushNotifId = self.recipientId;
-                [pushNotifId removeObjectAtIndex:0];
-                [PFCloud callFunctionInBackground:@"pushEventNotification" withParameters:@{@"userId" : pushNotifId} block:^(id object, NSError *error) {
+                NSMutableArray *pushNotifId;
+                if (self.segment.selectedSegmentIndex == 0) {
+                    pushNotifId = self.recipientId;
+                    [pushNotifId removeObjectAtIndex:0];
+                } else if (self.segment.selectedSegmentIndex == 1) {
+                    pushNotifId = [self.recipientId valueForKeyPath:@"@unionOfArrays.self"];
+                    NSLog(@"%@", [self.recipientId valueForKeyPath:@"@unionOfArrays.self"]);
+                    [pushNotifId removeObjectAtIndex:0];
+                }
+                
+                NSMutableDictionary * params = [NSMutableDictionary new];
+                params[@"userId"] = pushNotifId;
+                params[@"eventId"] = self.eventObject.objectId;
+                [PFCloud callFunctionInBackground:@"pushEventNotification" withParameters:params block:^(id object, NSError *error) {
                     if (!error) {
                         NSLog(@"YES");
                         AppDelegate *appDelegateTemp = (AppDelegate*)[[UIApplication sharedApplication]delegate];

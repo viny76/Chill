@@ -6,6 +6,7 @@
 
 #import "EditFriendsViewController.h"
 #import "HomeViewController.h"
+#import <MEAlertView.h>
 
 @interface EditFriendsViewController ()
 @end
@@ -22,6 +23,7 @@
     
     self.friendRequestsWaiting = [NSMutableArray array];
     [self refreshWaitingFriend];
+    
     
     [self getPersonOutOfAddressBook];
     
@@ -98,7 +100,7 @@
         string = (self.searchResults.count > 0 ? Localized(@"SearchFriend") : (showSection) ? [[[UILocalizedIndexedCollation currentCollation] sectionTitles] objectAtIndex:section] : nil);
     }
     else if (self.segment.selectedSegmentIndex == 2) {
-        string = Localized(@"PendingFriend");
+        string = @"Classement";
     }
     
     [label setText:string];
@@ -114,7 +116,7 @@
         [self loadFriends:NO];
     }
     else if (self.segment.selectedSegmentIndex == 2) {
-        [self refreshWaitingFriend];
+        [self loadFriends:NO];
     }
     
     self.tableView.hidden = NO;
@@ -148,7 +150,7 @@
         return (self.searchResults.count > 0 ? [self.searchResults count] : [[self.sectionedPersonName objectAtIndex:section] count]);
     }
     else if (self.segment.selectedSegmentIndex == 2) {
-        return (self.searchResults.count > 0 ? [self.searchResults count] : [self.friendRequestsWaiting count]);
+        return (self.searchResults.count > 0 ? [self.searchResults count] : [self.friends count]);
     }
     
     return 0;
@@ -207,11 +209,18 @@
     }
     
     else if (self.segment.selectedSegmentIndex == 2) {
-        NSArray *sourceData = (self.searchResults.count > 0 ? self.searchResults : self.friendRequestsWaiting);
+        NSArray *sourceData = (self.searchResults.count > 0 ? self.searchResults : self.friends);
         cell.accessoryType = UITableViewCellAccessoryNone;
-        NSString *name = [[sourceData objectAtIndex:indexPath.row] valueForKey:@"fromUsername"];
-        cell.textLabel.text = name;
-        cell.detailTextLabel.text = nil;
+        NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"xp" ascending:NO];
+        NSArray *sortDescriptors = [NSArray arrayWithObject:descriptor];
+        sourceData = [sourceData sortedArrayUsingDescriptors:sortDescriptors];
+        NSString *name = [[sourceData objectAtIndex:indexPath.row] valueForKey:@"surname"];
+        NSString *experience = [[[sourceData objectAtIndex:indexPath.row] valueForKey:@"xp"] stringValue];
+        NSString *bananaEmoji = @" \U0001F34C";
+        
+        cell.textLabel.text = [[NSString stringWithFormat:@"%ld. ", (long)indexPath.row+1
+                                 ] stringByAppendingString:name];
+        cell.detailTextLabel.text = [experience stringByAppendingString:bananaEmoji];
     }
     
     return cell;
@@ -226,52 +235,15 @@
         PFUser *selected = (self.searchResults.count > 0 ? [self.searchResults objectAtIndex:indexPath.row] : [self.allUsers objectAtIndex:indexPath.row]);
         
         if ([self isFriend:selected]) {
-            // Already friend
-            self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-            
-            [PFCloud callFunctionInBackground:@"removeFriend" withParameters:@{@"friendRequest" : selected.objectId} block:^(id object, NSError *error) {
-                if (!error) {
-                    
-                    PFRelation *friendsRelation = [[PFUser currentUser] relationForKey:@"friends"];
-                    [friendsRelation removeObject:selected];
-                    [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                        
-                        if (succeeded) {
-                            // Refresh Relation
-                            self.friendsRelation = [self.currentUser relationForKey:@"friends"];
-                            PFQuery *query = [self.friendsRelation query];
-                            [query orderByAscending:@"surname"];
-                            [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-                                if (error) {
-                                    NSLog(@"Error %@ %@", error, [error userInfo]);
-                                    [self.hud removeFromSuperview];
-                                    self.tableView.userInteractionEnabled = YES;
-                                } else {
-                                    self.friends = objects;
-                                    [self.tableView reloadData];
-                                    [self.hud removeFromSuperview];
-                                    self.tableView.userInteractionEnabled = YES;
-                                    cell.accessoryType = UITableViewCellAccessoryNone;
-                                }
-                            }];
-                        }
-                        else {
-                            NSLog(@"error");
-                            [self.hud removeFromSuperview];
-                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Try Again !" message:@"Check your network" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                            [alert show];
-                            self.tableView.userInteractionEnabled = YES;
-                        }
-                    }];
-                }
-                else {
-                    NSLog(@"error");
-                    [self.hud removeFromSuperview];
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Try Again !" message:@"Check your network" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                    [alert show];
-                    self.tableView.userInteractionEnabled = YES;
-                }
+            // Remove Friend
+            MEAlertView *alertView = [[MEAlertView alloc] initWithTitle:@"Attention !" message:@"Êtes-vous sûr de vouloir supprimer cet ami(e) ?"];
+            [alertView setCancelButtonWithTitle:@"Annuler" onTapped:^{
+                self.tableView.userInteractionEnabled = YES;
             }];
+            [alertView addOtherButtonWithTitle:@"Oui" onTapped:^{
+                [self removeFriend:selected withCell:cell];
+            }];
+            [alertView show];
         } else {
             // Not friend
             [self checkSelectedUserRequest:selected forIndexPath:indexPath forCell:cell];
@@ -334,7 +306,7 @@
     
     //AMIS EN ATTENTE
     else if (self.segment.selectedSegmentIndex == 2) {
-        [self addFriend:indexPath forCell:cell];
+//        [self addFriend:indexPath forCell:cell];
     }
     
     [self.tableView reloadData];
@@ -716,6 +688,55 @@
     }];
 }
 
+- (void)removeFriend:(PFUser *)selectedUser withCell:(UITableViewCell *)cell {
+    // Already friend
+    self.hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [PFCloud callFunctionInBackground:@"removeFriend" withParameters:@{@"friendRequest" : selectedUser.objectId} block:^(id object, NSError *error) {
+        if (!error) {
+            
+            PFRelation *friendsRelation = [[PFUser currentUser] relationForKey:@"friends"];
+            [friendsRelation removeObject:selectedUser];
+            [[PFUser currentUser] saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                
+                if (succeeded) {
+                    // Refresh Relation
+                    self.friendsRelation = [self.currentUser relationForKey:@"friends"];
+                    PFQuery *query = [self.friendsRelation query];
+                    [query orderByAscending:@"surname"];
+                    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+                        if (error) {
+                            NSLog(@"Error %@ %@", error, [error userInfo]);
+                            [self.hud removeFromSuperview];
+                            self.tableView.userInteractionEnabled = YES;
+                        } else {
+                            self.friends = objects;
+                            [self.tableView reloadData];
+                            [self.hud removeFromSuperview];
+                            self.tableView.userInteractionEnabled = YES;
+                            cell.accessoryType = UITableViewCellAccessoryNone;
+                        }
+                    }];
+                }
+                else {
+                    NSLog(@"error");
+                    [self.hud removeFromSuperview];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Try Again !" message:@"Check your network" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                    [alert show];
+                    self.tableView.userInteractionEnabled = YES;
+                }
+            }];
+        }
+        else {
+            NSLog(@"error");
+            [self.hud removeFromSuperview];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Try Again !" message:@"Check your network" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+            self.tableView.userInteractionEnabled = YES;
+        }
+    }];
+}
+
 - (void)refreshWaitingFriend {
     PFQuery *requestsToCurrentUser = [PFQuery queryWithClassName:@"FriendRequest"];
     [requestsToCurrentUser whereKey:@"to" equalTo:self.currentUser];
@@ -752,8 +773,8 @@
         
     }
     else if (self.segment.selectedSegmentIndex == 2) {
-        predicate = [NSPredicate predicateWithFormat:@"fromUsername beginswith[c] %@", searchText];
-        self.searchResults = [self.friendRequestsWaiting filteredArrayUsingPredicate:predicate];
+        predicate = [NSPredicate predicateWithFormat:@"surname beginswith[c] %@", searchText];
+        self.searchResults = [self.friends filteredArrayUsingPredicate:predicate];
     }
 }
 
